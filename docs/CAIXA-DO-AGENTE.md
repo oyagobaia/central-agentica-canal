@@ -1,7 +1,7 @@
 # Caixa do agente: o agente chamando a API do Web
 
 O agente vive num container que **não alcança o host** (a cadeia `YBCENTRAL_HOST` do
-[firewall](../lib/firewall.sh) bloqueia). O Central Agêntica MPV Web roda no host. Então o agente
+[firewall](../lib/firewall.sh) bloqueia). A Central Agêntica MPV Web roda no host. Então o agente
 não consegue fazer `curl` para o Web. A caixa resolve isso por arquivo: o agente deixa
 um pedido numa pasta da casa dele, o Web (que é root e enxerga todas as casas) executa
 o pedido como se fosse uma chamada HTTP normal e devolve a resposta noutra pasta.

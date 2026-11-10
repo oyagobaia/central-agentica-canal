@@ -1,8 +1,8 @@
 # Colaboradores
 
-Um **colaborador** é uma pessoa que você convida para conversar com **um** agente de trabalho do seu Central Agêntica MPV. Ela recebe um e-mail com o link, o login e uma senha temporária, cria a própria senha no primeiro acesso e passa a usar aquele agente por inteiro, e só ele.
+Um **colaborador** é uma pessoa que você convida para conversar com **um** agente de trabalho do sua Central Agêntica MPV. Ela recebe um e-mail com o link, o login e uma senha temporária, cria a própria senha no primeiro acesso e passa a usar aquele agente por inteiro, e só ele.
 
-Este documento tem duas partes: a primeira é para você, dono do Central Agêntica MPV; a segunda, "API", é para o agente que opera o painel por você (o Admin, por exemplo).
+Este documento tem duas partes: a primeira é para você, dono da Central Agêntica MPV; a segunda, "API", é para o agente que opera o painel por você (o Admin, por exemplo).
 
 ## Para o dono
 
@@ -23,12 +23,12 @@ Isso vale no servidor, não só na tela: o endereço de qualquer outro agente ou
 
 | Fica com o dono | Por quê |
 |---|---|
-| O **cofre** do agente (as chaves de serviço) | São credenciais que você pôs. Na tela e na lousa o colaborador lê: "O cofre é só do dono do Central Agêntica MPV." |
+| O **cofre** do agente (as chaves de serviço) | São credenciais que você pôs. Na tela e na lousa o colaborador lê: "O cofre é só do dono da Central Agêntica MPV." |
 | As **chaves de API do painel** | Dão acesso ao painel, e nenhuma chave gerencia chaves. |
-| O **login da conta de IA** do agente (ver o link, começar, mandar o código, cancelar, sair ou trocar a conta) | Quem paga a assinatura é você, e o link de login autentica a conta de quem o abre. O colaborador só fica sabendo, pelo aviso na conversa, que o agente está sem conta, e recebe "O agente precisa entrar numa conta, e isso é só do dono do Central Agêntica MPV. Avise o dono." |
-| **Gravar no painel** memória (`MEMORY.md` e outros), arquivos da casa, apps, custos, reinício e qualquer rota nova | O painel registra como se fosse você, e a memória e os arquivos viram instrução permanente do agente. Recebe "Isso muda o agente de forma permanente ... é só do dono do Central Agêntica MPV". Em `/p/<agente>/` a escrita dele passa só por uma lista de permissão: transcrever áudio e, em Sessões, arquivar, desarquivar, renomear e marcar favorito. |
+| O **login da conta de IA** do agente (ver o link, começar, mandar o código, cancelar, sair ou trocar a conta) | Quem paga a assinatura é você, e o link de login autentica a conta de quem o abre. O colaborador só fica sabendo, pelo aviso na conversa, que o agente está sem conta, e recebe "O agente precisa entrar numa conta, e isso é só do dono da Central Agêntica MPV. Avise o dono." |
+| **Gravar no painel** memória (`MEMORY.md` e outros), arquivos da casa, apps, custos, reinício e qualquer rota nova | O painel registra como se fosse você, e a memória e os arquivos viram instrução permanente do agente. Recebe "Isso muda o agente de forma permanente ... é só do dono da Central Agêntica MPV". Em `/p/<agente>/` a escrita dele passa só por uma lista de permissão: transcrever áudio e, em Sessões, arquivar, desarquivar, renomear e marcar favorito. |
 | As **credenciais dos canais** (token de bot do Telegram, WhatsApp) | Quem controla o canal fala em nome do agente com o mundo. Colar um token na conversa também é recusado para ele. |
-| A **Tela** do agente (a página, o noVNC, o WebSocket e a senha) | O navegador da Tela roda como o agente e abre arquivos do servidor, como as credenciais da assinatura. Ele lê: "A Tela do agente dá acesso aos arquivos e às contas dele, por isso é só do dono do Central Agêntica MPV." |
+| A **Tela** do agente (a página, o noVNC, o WebSocket e a senha) | O navegador da Tela roda como o agente e abre arquivos do servidor, como as credenciais da assinatura. Ele lê: "A Tela do agente dá acesso aos arquivos e às contas dele, por isso é só do dono da Central Agêntica MPV." |
 | **Mandar mensagem, instrução ou decisão pelo painel**: o chat do painel, a sessão de socorro e, em Sessões, criar, mandar recado, decidir pedido, retomar, passar o bastão, anexar e apagar | O painel não sabe quem é o colaborador e trataria a mensagem como sua. Ele conversa e confirma permissões só pela conversa do agente, onde cada mensagem e cada confirmação leva o nome dele. Em Sessões ele só acompanha, arquiva, renomeia e marca favorito. |
 
 Cada agente tem **um** colaborador por vez, e cada pessoa acessa **um** agente só. As mensagens dele chegam ao agente marcadas como vindas de um colaborador (`colaborador: Nome (e-mail)`), para o agente saber que não é você.
@@ -52,7 +52,7 @@ A senha temporária vale por 7 dias. Passado o prazo, o login dela avisa que a s
 
 ### E-mail (opcional)
 
-Sem configurar nada, o convite sai pelo texto da tela e você manda por WhatsApp. Para o Central Agêntica MPV mandar o e-mail sozinho, coloque estas linhas no `/etc/ybcentral/web.env` (uma linha por vez, sem apagar as outras) e reinicie o painel:
+Sem configurar nada, o convite sai pelo texto da tela e você manda por WhatsApp. Para a Central Agêntica MPV mandar o e-mail sozinho, coloque estas linhas no `/etc/ybcentral/web.env` (uma linha por vez, sem apagar as outras) e reinicie o painel:
 
 | Variável | O que é |
 |---|---|
@@ -72,7 +72,7 @@ YBCENTRAL_SMTP_SENHA=senha-de-app-de-16-letras
 YBCENTRAL_SMTP_REMETENTE=Central Agêntica MPV <voce@gmail.com>
 ```
 
-O Central Agêntica MPV confere o certificado do servidor e só manda a senha por conexão criptografada. A senha do e-mail nunca aparece em tela nem em log.
+A Central Agêntica MPV confere o certificado do servidor e só manda a senha por conexão criptografada. A senha do e-mail nunca aparece em tela nem em log.
 
 ### Quando o e-mail não sai
 
@@ -177,7 +177,7 @@ Regras que o servidor aplica por cima:
 - O Web manda ao painel, em todo pedido, os cabeçalhos `X-YBCentral-Papel` (`dono` ou `colaborador`) e `X-YBCentral-Colaborador` (o id, só para colaborador), e apaga os que o navegador mandar. O painel ainda não os usa.
 - Repetir um envio com o mesmo `cliente_id` devolve a resposta guardada e nunca muda quem é o autor do turno; o `cliente_id` de uma pessoa não vale para a outra.
 - Comandos de barra não existem para ele: `/comando` e `/comandos` são negados, e um texto que começa com `/` segue como mensagem comum, dentro do envelope com `from="colaborador: …"`.
-- Ele só responde a pedido de permissão ou pergunta do agente se a pendência foi aberta por um turno que **ele** iniciou, e precisa mandar o `tool_use_id` dela. Uma mensagem que só entrou na fila (o agente estava ocupado ou esperando confirmação) não inicia turno, e uma mensagem do dono na fila tira dele a confirmação. Senão recebe "Essa confirmação é do dono do Central Agêntica MPV".
+- Ele só responde a pedido de permissão ou pergunta do agente se a pendência foi aberta por um turno que **ele** iniciou, e precisa mandar o `tool_use_id` dela. Uma mensagem que só entrou na fila (o agente estava ocupado ou esperando confirmação) não inicia turno, e uma mensagem do dono na fila tira dele a confirmação. Senão recebe "Essa confirmação é do dono da Central Agêntica MPV".
 - Além da memória do Web, a autoria é provada pela transcrição da sessão, que é o que o runner de fato executou. Cada mensagem do colaborador leva no envelope `colaborador_id="…"`, gravado só pelo servidor (o texto dele não consegue fechar nem forjar o envelope). A pendência é dele somente se a última mensagem de usuário antes dela é um envelope com o id dele e nenhuma outra mensagem de usuário (do dono pelo painel, Telegram, canal ou rotina) aparece depois. Qualquer dúvida, como transcrição ilegível ou agente em Codex, deixa a pendência com o dono.
 - O texto, a legenda e o nome de arquivo dele não podem ter caracteres de controle (todos os de código abaixo de 32 menos a quebra de linha e o tab, o Enter `\r`, ESC, DEL e os de 128 a 159), porque o terminal do agente os entenderia como teclas apertadas. O envio é recusado com `400` dizendo qual caractere e em que posição. O dono tem a mesma regra, com o `\r` virando quebra de linha.
 - A sessão dele é conferida de novo depois de o corpo do pedido chegar inteiro e antes de qualquer ação (`send`, `upload`, `permissao`, `pergunta`, login e demais). Quem foi revogado, ou teve o convite reenviado, enquanto mandava um corpo lento recebe `401` e nada é feito.

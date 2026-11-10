@@ -1,6 +1,6 @@
-# Segurança do Central Agêntica MPV
+# Segurança da Central Agêntica MPV
 
-Este documento explica o que o Central Agêntica MPV protege, de quem, como, e o que ainda não protege.
+Este documento explica o que a Central Agêntica MPV protege, de quem, como, e o que ainda não protege.
 Para relatar uma falha, siga o `SECURITY.md` na raiz do repositório.
 
 ## Resumo em cinco linhas
@@ -38,7 +38,7 @@ comprometido ainda consegue mandar dados para a internet (ver "Pendências").
 
 ## Portas
 
-- **Caddy** é a única porta pública, com HTTPS automático. Ele entrega o Central Agêntica MPV Web.
+- **Caddy** é a única porta pública, com HTTPS automático. Ele entrega a Central Agêntica MPV Web.
 - **Painel de cada agente, runner e serviços internos** escutam em `127.0.0.1`. O painel só
   aceita abrir para fora com configuração explícita.
 - O instalador não abre porta nenhuma além da do Caddy.
@@ -61,7 +61,7 @@ comprometido ainda consegue mandar dados para a internet (ver "Pendências").
 - Contra CSRF, toda requisição que muda alguma coisa confere `Origin` e `Sec-Fetch-Site`.
   Sair é por POST.
 - No modo trancado só a senha fica desligada. As outras três portas de entrada continuam
-  valendo, cada uma com a própria credencial: o segredo do proxy do Central Agêntica MPV Web, a chave de API
+  valendo, cada uma com a própria credencial: o segredo do proxy da Central Agêntica MPV Web, a chave de API
   do painel e o Cloudflare Access.
 
 ## Chaves de API do painel
@@ -109,9 +109,9 @@ sem tela.
   respondeu, com 1 se algo respondeu, e com 2 quando o teste não conseguiu concluir. Sem
   argumento, testa todos os agentes que estão rodando.
 
-## Proxy do Central Agêntica MPV Web
+## Proxy da Central Agêntica MPV Web
 
-O Central Agêntica MPV Web faz o login do dono e repassa as requisições para o painel do agente em
+A Central Agêntica MPV Web faz o login do dono e repassa as requisições para o painel do agente em
 `/p/<slug>/`. Para o painel acreditar que a requisição veio do Web, ela traz o cabeçalho
 `X-YBCentral-Proxy` com um segredo por agente.
 
@@ -173,7 +173,7 @@ aí a máscara não o reconhece.
 
 Rodar o agente na assinatura de quem usa é permitido. Os riscos estão em
 `docs/RISCO-DE-BLOQUEIO-DE-CONTA.md`, com as fontes oficiais. Em resumo: cada pessoa usa a
-própria conta, o Central Agêntica MPV nunca copia o arquivo de login de um lugar para outro, e agente que
+própria conta, a Central Agêntica MPV nunca copia o arquivo de login de um lugar para outro, e agente que
 atende outra pessoa usa a credencial dela.
 
 ## Segredos fora do lugar
@@ -188,7 +188,7 @@ atende outra pessoa usa a credencial dela.
 | Item | Risco | Situação |
 | --- | --- | --- |
 | Saída livre para a internet | um agente comprometido por prompt injection consegue mandar o que tem no container para qualquer endereço | aceito na v1; a correção é um proxy de saída com lista de destinos |
-| Instalação baixa pacotes e a chave do repositório do Node | quem controlar um dos endereços de onde o instalador baixa pacotes executa código na máquina | o Central Agêntica MPV em si se instala por `git clone` do repositório público e `sudo ./install.sh`, sem `curl \| bash`; as fontes externas usam HTTPS (`curl --proto '=https' --tlsv1.2`); fixar versão e conferir hash fica para depois |
+| Instalação baixa pacotes e a chave do repositório do Node | quem controlar um dos endereços de onde o instalador baixa pacotes executa código na máquina | a Central Agêntica MPV em si se instala por `git clone` do repositório público e `sudo ./install.sh`, sem `curl \| bash`; as fontes externas usam HTTPS (`curl --proto '=https' --tlsv1.2`); fixar versão e conferir hash fica para depois |
 | Cabeçalhos contra iframe no painel | uma página hostil poderia carregar o painel num iframe e induzir cliques | o painel precisa abrir dentro de outra página em algumas instalações; o login com `SameSite` e a checagem de `Origin` seguram as ações |
 | Escrita de arquivo pelo painel | entre conferir o caminho e gravar, um agente malicioso poderia trocar uma pasta por atalho | exige um agente já comprometido dentro do próprio container |
 | Token do runner e segredo do proxy dentro do container | quem controla o agente consegue falar com o próprio runner | aceitável na v1: cada token vale só para aquele agente, e o token do Admin nunca entra em container |

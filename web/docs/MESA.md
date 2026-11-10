@@ -1,7 +1,7 @@
 # Mesa de tarefas
 
 A Mesa mostra ao dono, numa tela só, o que cada agente está fazendo: quem está em quê,
-quanto falta, o que travou e o que está esperando por ele. Fica em `/mesa` no Central Agêntica MPV Web.
+quanto falta, o que travou e o que está esperando por ele. Fica em `/mesa` na Central Agêntica MPV Web.
 
 **Quem cria, atualiza e conclui as tarefas é o próprio agente**, pelo comando `ybcentral-mesa`
 (ou pela API crua, com `ybcentral-api`). O dono acompanha pela tela e também pode mexer: criar

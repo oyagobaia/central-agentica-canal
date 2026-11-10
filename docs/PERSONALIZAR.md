@@ -1,16 +1,16 @@
-# Personalizar o seu Central Agêntica MPV sem perder a mudança na próxima atualização
+# Personalizar o sua Central Agêntica MPV sem perder a mudança na próxima atualização
 
-O Central Agêntica MPV é seu, e você pode pedir ao Admin para ajustar o que quiser: um botão novo, uma cor, uma
+A Central Agêntica MPV é seu, e você pode pedir ao Admin para ajustar o que quiser: um botão novo, uma cor, uma
 habilidade, um jeito diferente de um agente trabalhar. Só que existe uma pegadinha: a atualização oficial
 troca os arquivos do programa por completo. Uma mudança feita no lugar errado desaparece sozinha na
-próxima vez que você pedir "atualiza o Central Agêntica MPV". Este guia mostra onde cada tipo de mudança deve ficar,
+próxima vez que você pedir "atualiza a Central Agêntica MPV". Este guia mostra onde cada tipo de mudança deve ficar,
 para ela sobreviver. O Admin lê este documento antes de mexer em qualquer coisa.
 
 > **Mudança importante para as personalizações.** Este aplicativo vai ser personalizado por vocês e
 > continuar sendo atualizado pela equipe do Central Agêntica MPV. Para manter a estabilidade e preservar as suas alterações,
 > vale uma regra daqui para frente: toda personalização entra no registro de personalizações, e antes de
 > mexer no programa convém ler a seção "A arquitetura em uma página", logo abaixo, para a mudança respeitar
-> o núcleo do Central Agêntica MPV.
+> o núcleo da Central Agêntica MPV.
 
 ## A arquitetura em uma página
 
@@ -18,7 +18,7 @@ Pense em lugares diferentes, cada um com a sua regra.
 
 | Lugar | O que é | O que acontece na atualização |
 | --- | --- | --- |
-| O clone (a pasta onde você baixou o Central Agêntica MPV, guardada em `YBCENTRAL_REPO`, no arquivo `/etc/ybcentral/ybcentral.env`) | A cópia do código, com o histórico de versões (git) | Recebe a versão nova |
+| O clone (a pasta onde você baixou a Central Agêntica MPV, guardada em `YBCENTRAL_REPO`, no arquivo `/etc/ybcentral/ybcentral.env`) | A cópia do código, com o histórico de versões (git) | Recebe a versão nova |
 | `/opt/ybcentral/app` | Cópia de trabalho do programa, de onde o painel, o Admin e a imagem dos agentes leem | É apagada e refeita a partir do clone |
 | `/opt/ybcentral/admin` | A casa do Admin: instruções dele, habilidades próprias, registro das suas personalizações | Preservada |
 | `/var/lib/ybcentral/agentes/<nome>/home` | A casa de cada agente: memória, identidade, personalidade, rotinas, habilidades | Preservada |
@@ -103,7 +103,7 @@ sua. Em outubro de 2026, as mais mexidas foram:
 Quanto menor e mais isolada a mudança, menor a chance de conflito. Um arquivo novo quase nunca esbarra em
 nada. Um ajuste no meio de `conversa.js` esbarra com frequência.
 
-## Mudanças na base do Central Agêntica MPV: pode, com aviso
+## Mudanças na base da Central Agêntica MPV: pode, com aviso
 
 Você pode pedir mudanças no nível do sistema, por exemplo uma nova forma de gerar agentes ou um ajuste no
 comando `ybcentral`, no instalador (`install.sh` e a pasta `lib/`) ou no `runner/`. Essas peças sabem refazer
@@ -111,7 +111,7 @@ tudo na ordem certa, com backup, então uma mudança nelas tem mais chance de at
 
 O combinado é este:
 
-1. O Admin avisa, em linguagem simples, que o pedido mexe na base do Central Agêntica MPV e pode dar problema nas
+1. O Admin avisa, em linguagem simples, que o pedido mexe na base da Central Agêntica MPV e pode dar problema nas
    próximas atualizações.
 2. Se você mantiver o pedido, o Admin faz a mudança, na branch `personalizacoes`, como qualquer outra
    personalização.
@@ -219,9 +219,9 @@ Para ver o cruzamento sem mudar nada, o Admin roda `sudo ybcentral atualizar --s
 `sudo ybcentral personalizacoes conferir`). Depois do seu sim, o ajuste segue o capítulo "Personalização
 que cruza com a versão nova" do `docs/ATUALIZAR.md`.
 
-## Quem já tinha o Central Agêntica MPV antes desta versão
+## Quem já tinha a Central Agêntica MPV antes desta versão
 
-Se o seu Central Agêntica MPV é anterior a esta funcionalidade, a primeira atualização faz uma migração. Antes de
+Se o sua Central Agêntica MPV é anterior a esta funcionalidade, a primeira atualização faz uma migração. Antes de
 copiar a versão nova, o instalador compara a pasta do programa (`/opt/ybcentral/app`) com a versão oficial
 que estava instalada. O que alguém mudou direto ali é guardado em
 `/opt/ybcentral/admin/personalizacoes-migracao/<data>/`, com estes arquivos: `LISTA.txt` (uma letra por arquivo: M mudou, A acrescentado, D apagado, P só a permissão,

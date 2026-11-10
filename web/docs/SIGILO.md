@@ -1,4 +1,4 @@
-# Modo escondido na API do Central Agêntica MPV Web
+# Modo escondido na API da Central Agêntica MPV Web
 
 Esconde nomes, valores e contatos para mostrar a tela numa aula. A conversa web chama estas rotas
 sozinha quando a pessoa liga o 👁; um agente pode usar as mesmas para conferir um texto. Todas

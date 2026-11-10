@@ -30,7 +30,7 @@ Não existe senha padrão.
 
 Trancado desliga só a senha. O segredo do proxy, a chave de API e o Cloudflare Access
 continuam valendo, cada um com a própria credencial. É assim que o painel roda dentro
-do container no Central Agêntica MPV v1: sem senha própria, com o Central Agêntica MPV Web fazendo o login do
+do container na Central Agêntica MPV v1: sem senha própria, com a Central Agêntica MPV Web fazendo o login do
 dono e chegando pelo proxy. Sem nenhuma dessas três configurada, nada entra.
 
 ## Sessão e proteções

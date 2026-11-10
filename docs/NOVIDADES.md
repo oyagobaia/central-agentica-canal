@@ -1,7 +1,7 @@
 # Aviso de novidades depois de atualizar
 
-Quando o dono atualiza o Central Agêntica MPV, cada agente (e o Admin) conta a ele, na primeira conversa depois
-da atualização, o que veio de novo e dá para usar. Algo como: "vi que você atualizou o Central Agêntica MPV, o novo
+Quando o dono atualiza a Central Agêntica MPV, cada agente (e o Admin) conta a ele, na primeira conversa depois
+da atualização, o que veio de novo e dá para usar. Algo como: "vi que você atualizou a Central Agêntica MPV, o novo
 está com isso, isso e isso". Acontece uma vez por agente e custa quase nada: o texto só entra no
 contexto do turno em que a versão mudou.
 

@@ -1,6 +1,6 @@
-# Aviso de versão nova do Central Agêntica MPV
+# Aviso de versão nova da Central Agêntica MPV
 
-Quando o repositório oficial ganha uma versão nova (um PR mergeado na `main`), o Central Agêntica MPV instalado
+Quando o repositório oficial ganha uma versão nova (um PR mergeado na `main`), a Central Agêntica MPV instalado
 percebe sozinho e avisa o dono: uma faixa discreta no painel ("Nova versão disponível") com o resumo
 do que mudou, e um recado ao Admin, que conta ao dono no chat e pergunta se ele quer instalar.
 
@@ -41,9 +41,9 @@ recado ao Admin** (veja abaixo): o resumo existe só no painel.
 
 ## O que o dono vê
 
-- **A faixa no painel**, no alto de todas as telas, numa linha: "Nova versão do Central Agêntica MPV disponível
+- **A faixa no painel**, no alto de todas as telas, numa linha: "Nova versão da Central Agêntica MPV disponível
   (X → Y)". "Ver o que mudou" abre a lista, "Instalar" leva ao chat do Admin com o pedido "Quero instalar a
-  atualização do Central Agêntica MPV" já escrito no campo (ele só envia) e "Agora não" esconde o aviso até sair uma
+  atualização da Central Agêntica MPV" já escrito no campo (ele só envia) e "Agora não" esconde o aviso até sair uma
   versão mais nova. Rotas em `web/docs/ATUALIZACAO.md`.
 - **O recado ao Admin**, uma vez por versão publicada e com pelo menos 20 horas entre dois recados. O Admin
   roda com permissão total, então o recado tem **só texto fixo e dados já validados** (versão instalada,

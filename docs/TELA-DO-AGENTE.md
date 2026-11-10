@@ -27,8 +27,8 @@ gravar, a tela abre sozinha.
  dono (navegador)
    |  HTTPS + login do painel
    v
- painel / web do Central Agêntica MPV  --- proxy autenticado: <base>/tela/websockify
-   |  (a web/ do Central Agêntica MPV já repassa WebSocket em /p/<agente>/)
+ painel / web da Central Agêntica MPV  --- proxy autenticado: <base>/tela/websockify
+   |  (a web/ da Central Agêntica MPV já repassa WebSocket em /p/<agente>/)
    v
  container do agente
    websockify (noVNC)   127.0.0.1:6080   <- só localhost
@@ -134,7 +134,7 @@ Em todos os casos o log da unidade diz o resto: `podman exec ybcentral-<slug> jo
 ## Variáveis do painel
 
 O painel que roda dentro do agente lê estas variáveis (no `painel.env`). Os valores entre parênteses
-são os esperados na imagem do Central Agêntica MPV.
+são os esperados na imagem da Central Agêntica MPV.
 
 | Variável | O que é |
 | --- | --- |
@@ -148,7 +148,7 @@ são os esperados na imagem do Central Agêntica MPV.
 
 ## Fachadas sem WebSocket: a decisão
 
-O noVNC precisa de WebSocket de ponta a ponta. A web do Central Agêntica MPV (`/p/<agente>/`) repassa WebSocket,
+O noVNC precisa de WebSocket de ponta a ponta. A web da Central Agêntica MPV (`/p/<agente>/`) repassa WebSocket,
 então a Tela abre normalmente no proxy do painel.
 
 Na VPS do Danilo a fachada dos clientes é outra: o **agents-web** (Next, rota
@@ -191,7 +191,7 @@ As flags do Chrome já são econômicas: sem GPU, sem `/dev/shm`, no máximo 4 p
 O `install.sh` já constrói a imagem com `COM_NAVEGADOR=1` (o padrão desde 17/10/2026), então a
 Tela vem na imagem de todo agente. Um agente criado antes desta versão ganha a Tela assim:
 
-1. Atualize o Central Agêntica MPV, para que a imagem nova seja construída (em arm64 a Tela usa o Chromium; ver
+1. Atualize a Central Agêntica MPV, para que a imagem nova seja construída (em arm64 a Tela usa o Chromium; ver
    acima). A instalação padrão, sem flags, prepara o painel e o Admin e **adia a imagem para a criação do
    primeiro agente**; nessa hora a imagem é construída com `COM_NAVEGADOR=1`, ou seja, com a Tela, antes de
    o agente ficar pronto, e o `ybcentral agente criar` gera e mostra a senha da Tela uma vez.
@@ -208,5 +208,5 @@ Tela vem na imagem de todo agente. Um agente criado antes desta versão ganha a 
 Os agentes da VPS do Danilo, em `/srv/agents-jaula`, usam o `Containerfile.tela` próprio e guardam o
 rfbauth em `/home/agente/.plataforma/segredos/vnc.senha`. O painel aceita esse caminho por
 `YBCENTRAL_TELA_SENHA_ARQUIVO`. As unidades de lá têm nomes sem o prefixo `ybcentral-` (`tela-vnc.service`
-e companhia). Quem migrar um agente da jaula para a imagem do Central Agêntica MPV troca o caminho para
+e companhia). Quem migrar um agente da jaula para a imagem da Central Agêntica MPV troca o caminho para
 `/home/agente/.ybcentral/tela/vnc.senha`.

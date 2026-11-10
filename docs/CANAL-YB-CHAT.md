@@ -1,4 +1,4 @@
-# O canal MPV Chat dentro do Central Agêntica MPV
+# O canal MPV Chat dentro da Central Agêntica MPV
 
 Escrito em 11/08/2026, quando o servidor MCP do MPV Chat foi portado da plataforma
 (MPV AI Bunker) para o plugin. Requisito da release v0.5.

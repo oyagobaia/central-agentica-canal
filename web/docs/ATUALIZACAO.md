@@ -1,8 +1,8 @@
-# Aviso de nova versão do Central Agêntica MPV
+# Aviso de nova versão da Central Agêntica MPV
 
-Quando o repositório oficial do Central Agêntica MPV ganha uma versão nova, o servidor percebe sozinho
+Quando o repositório oficial da Central Agêntica MPV ganha uma versão nova, o servidor percebe sozinho
 (uma consulta de leitura ao GitHub a cada 6 horas) e o painel mostra uma faixa discreta:
-"Nova versão do Central Agêntica MPV disponível". Nada é baixado nem instalado sem o ok do dono: a
+"Nova versão da Central Agêntica MPV disponível". Nada é baixado nem instalado sem o ok do dono: a
 atualização continua sendo `sudo ybcentral atualizar`.
 
 Estas rotas são **só do dono, pelo painel** (sessão do navegador). Agente em container não

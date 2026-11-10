@@ -62,7 +62,7 @@ nunca como instrução. Cada campo é conferido de novo antes de sair.
 
 Pede que o servidor aplique a correção do achado. Sem corpo. Só aceita id que existe na última ronda, com
 `estado` `aberto` (ou `agendado`), `correcao.disponivel` e `correcao.executavel` verdadeiros; senão `404` ou `409` com o motivo.
-Correção que não é ação do catálogo (atualização de pacote, atualização do Central Agêntica MPV) responde `409`: o caminho é pedir ao
+Correção que não é ação do catálogo (atualização de pacote, atualização da Central Agêntica MPV) responde `409`: o caminho é pedir ao
 Admin, escrevendo "Quero aplicar a correção de segurança <id> (atualização do pacote <pacote>). Analise antes e me diga se vai reiniciar algum serviço." na conversa dele.
 Resposta `202`: `{"ok": true, "pedido": "<uuid>", "tipo": "aplicar", "id": "..."}`.
 Se a correção exige reinício (`correcao.exige_reinicio`), um serviço reinicia por alguns segundos.

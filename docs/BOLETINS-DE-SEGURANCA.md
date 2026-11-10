@@ -1,7 +1,7 @@
-# Boletins de segurança do Central Agêntica MPV
+# Boletins de segurança da Central Agêntica MPV
 
-Quando é descoberta uma falha de segurança numa das ferramentas que o Central Agêntica MPV usa, a equipe publica um
-**boletim** no repositório oficial. O Central Agêntica MPV instalado percebe sozinho e avisa o dono: o aviso único
+Quando é descoberta uma falha de segurança numa das ferramentas que a Central Agêntica MPV usa, a equipe publica um
+**boletim** no repositório oficial. A Central Agêntica MPV instalado percebe sozinho e avisa o dono: o aviso único
 "Seu ambiente está em risco" no painel (uma janela só, que reúne os boletins e as falhas críticas da
 [ronda de segurança](RONDA-DE-SEGURANCA.md)), um selo discreto que fica no alto das telas até o assunto se
 resolver, e um recado ao Admin, que conta ao dono no chat.
@@ -12,7 +12,7 @@ com o sim explícito do dono, pelo roteiro de [ATUALIZAR.md](ATUALIZAR.md).
 ## De onde vem o aviso
 
 1. Uma ronda de segurança acompanha as fontes oficiais (avisos do GitHub, das distribuições Linux, dos
-   projetos que o Central Agêntica MPV usa) e prepara o boletim.
+   projetos que a Central Agêntica MPV usa) e prepara o boletim.
 2. O boletim só é publicado depois que o Danilo aprova, por um pull request, e **depois que a correção
    entrou na `main`**. O boletim vai no arquivo `seguranca/boletins.json` do repositório.
 3. Todo boletim tem uma **fonte oficial** (o registro da falha feito por quem mantém a ferramenta). Sem
@@ -49,7 +49,7 @@ antes de aparecer na tela. A tela escapa todo texto.
 - **O selo "🛡 N pontos de segurança"** fica no alto das telas enquanto houver algum ponto em risco, e leva à
   tela Segurança. Conta os boletins ainda não dispensados (inclusive os adiados com "Lembrar depois") e as
   falhas críticas da ronda em aberto, sem decisão do dono.
-- **O detalhe fica na tela Segurança**, na seção "Avisos de segurança do Central Agêntica MPV": a data, a gravidade, o link
+- **O detalhe fica na tela Segurança**, na seção "Avisos de segurança da Central Agêntica MPV": a data, a gravidade, o link
   da fonte oficial, a notícia, o que muda no sistema e os detalhes, com as ações de sempre.
 - **Atualizar**: leva ao chat do Admin com o pedido já escrito no campo. O dono só envia.
 - **Lembrar depois**: adia o lembrete do boletim por 24 horas no servidor. O aviso continua contando no selo e

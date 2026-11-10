@@ -1,10 +1,10 @@
-# Como o Central Agêntica MPV funciona (explicado pra qualquer pessoa)
+# Como a Central Agêntica MPV funciona (explicado pra qualquer pessoa)
 
 Sem jargao. Se voce nunca programou, este texto e pra voce.
 
 ---
 
-## 1. O que e o Central Agêntica MPV, em uma frase
+## 1. O que e a Central Agêntica MPV, em uma frase
 
 > Um assistente pessoal SEU, que mora no Telegram, lembra das suas coisas,
 > e fica ligado 24 horas por dia.

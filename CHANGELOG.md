@@ -2,7 +2,7 @@
 
 Notas de versão do Central Agêntica MPV, de YB Treinamentos Ltda (MPV).
 
-Todas as mudanças importantes do Central Agêntica MPV ficam neste arquivo.
+Todas as mudanças importantes da Central Agêntica MPV ficam neste arquivo.
 
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto adota o
 [Versionamento Semântico](https://semver.org/lang/pt-BR/).
@@ -24,14 +24,14 @@ acontece se a fonte falhar.
 
 ### Como atualizar (guia de rondas)
 
-Peça ao Admin, no chat: "atualiza o Central Agêntica MPV". Nesta versão há uma instrução nova para os seus agentes conhecerem o guia. Ela
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". Nesta versão há uma instrução nova para os seus agentes conhecerem o guia. Ela
 entra na identidade de cada agente, regravada com `ybcentral agente identidade <agente>`, sem apagar o que você personalizou neles.
 
-**Manual do Central Agêntica MPV no painel.** O menu ☰ ganha o item **Manual**, uma tela (`/manual`) que mostra, página por página, o que o Central Agêntica MPV faz e como se usa, com busca pelos títulos e uma visita guiada. O Admin lê o mesmo manual direto da pasta `docs/manual` e os agentes o consultam pelo painel antes de dizer que algo não existe. O contrato das rotas está em `web/docs/MANUAL.md`.
+**Manual da Central Agêntica MPV no painel.** O menu ☰ ganha o item **Manual**, uma tela (`/manual`) que mostra, página por página, o que a Central Agêntica MPV faz e como se usa, com busca pelos títulos e uma visita guiada. O Admin lê o mesmo manual direto da pasta `docs/manual` e os agentes o consultam pelo painel antes de dizer que algo não existe. O contrato das rotas está em `web/docs/MANUAL.md`.
 
 ### Como atualizar (manual e personalização no nível do sistema)
 
-1. **Peça ao Admin, no chat: "atualiza o Central Agêntica MPV".** Esta versão traz uma instrução nova para o Admin e para os agentes saberem que o manual existe e onde consultá-lo. Ela entra na seção de ambiente que o Central Agêntica MPV mantém para cada agente, sem apagar o que você personalizou nas instruções deles. Se algum agente antigo não a mostrar depois da atualização, peça ao Admin para regravar essa seção com `sudo ybcentral agente identidade <nome>`.
+1. **Peça ao Admin, no chat: "atualiza a Central Agêntica MPV".** Esta versão traz uma instrução nova para o Admin e para os agentes saberem que o manual existe e onde consultá-lo. Ela entra na seção de ambiente que a Central Agêntica MPV mantém para cada agente, sem apagar o que você personalizou nas instruções deles. Se algum agente antigo não a mostrar depois da atualização, peça ao Admin para regravar essa seção com `sudo ybcentral agente identidade <nome>`.
 2. **Regra nova para o Admin.** Pedidos no nível do sistema (nova forma de gerar agentes, mudança no `bin/ybcentral`, no instalador ou no `runner/`) passam a ser permitidos. O Admin avisa você, em linguagem simples, que aquilo mexe na base e pode dar problema nas próximas atualizações; se você mantiver o pedido, ele faz, anota em `PERSONALIZACOES.md` que a mudança mexe na base e tenta mantê-la funcionando a cada atualização. Cofre e segredos, firewall, autenticação do painel, isolamento dos containers e ganchos de segurança continuam fora, mesmo a pedido. O guia está em `docs/PERSONALIZAR.md`.
 
 **Trocar de página no painel do agente deixou de mostrar o layout antigo.** Ao abrir uma página do painel (Status,
@@ -44,7 +44,7 @@ demorar mais de 8 segundos ou falhar ao abrir, ela deixa de ficar presa e diz o 
 
 ### Como atualizar (troca de páginas do painel)
 
-Basta atualizar o Central Agêntica MPV e recarregar a página do painel (no celular, feche e abra de novo, ou use Ctrl+F5 no
+Basta atualizar a Central Agêntica MPV e recarregar a página do painel (no celular, feche e abra de novo, ou use Ctrl+F5 no
 computador). Nada precisa ser configurado nem apagado: as suas chaves, conversas e agentes continuam como estavam.
 
 **O aviso "Faça o login nos seus agentes" agora aparece uma única vez.** Antes, ele voltava a cada aba nova e a cada
@@ -87,7 +87,7 @@ O guia está em `docs/ANONIMIZAR.md`.
 
 ### Como atualizar (anonimizar documentos)
 
-1. **Peça ao Admin, no chat: "atualiza o Central Agêntica MPV".** A atualização grava a unidade que instala o detector de nomes e traz a
+1. **Peça ao Admin, no chat: "atualiza a Central Agêntica MPV".** A atualização grava a unidade que instala o detector de nomes e traz a
    tela nova. Nada é instalado nem ligado sozinho: a anonimização começa desligada em todos os agentes.
 2. **O detector de nomes é opcional e se instala pela tela Anonimizar.** Sem ele, o filtro só troca o que tem formato fixo (CPF,
    CNPJ, telefone, e-mail) e, por segurança, bloqueia o envio de documentos até você escolher outra opção. Os leitores de PDF,
@@ -124,13 +124,13 @@ travas sumir.
 
 ### Como atualizar (a Tela do agente)
 
-Peça ao Admin, no chat: "atualiza o Central Agêntica MPV". Ele confirma com você e instala; agentes, conversas e configurações
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". Ele confirma com você e instala; agentes, conversas e configurações
 ficam como estão. Se algum dos seus agentes foi criado antes da Tela existir, ele ainda não tem a senha dela, e sem
 ela a Tela não conecta. Defina a senha uma vez, na aba Tela do painel desse agente (menu do agente, item Tela): é a
-segunda trava, além do login do painel, e o Central Agêntica MPV não inventa uma por você porque ninguém saberia qual é. O resumo
+segunda trava, além do login do painel, e a Central Agêntica MPV não inventa uma por você porque ninguém saberia qual é. O resumo
 da atualização lista os agentes que ainda precisam disso. Servidor arm64 precisa reconstruir a imagem uma vez
 (o Admin faz isso na atualização).
-**Convidar um colaborador.** Agora você pode convidar uma pessoa para conversar com um dos seus agentes de trabalho, sem dar acesso ao resto do Central Agêntica MPV. No menu ☰ do agente há o item **Convidar colaborador** (ou a página `/colaboradores`): você informa o e-mail da pessoa, e ela recebe o link, o login e uma senha temporária que vale por 7 dias. No primeiro acesso ela cria a própria senha e passa a usar aquele agente: a conversa e a leitura das sessões, das rotinas, da memória e dos arquivos. Ela não grava memória, arquivos nem configuração pelo painel, e o login da conta de IA do agente também fica só com você. Ela não sai desse agente: o Admin, os outros agentes e as telas da caixa inteira (chaves de API do sistema, convidar colaborador, configurações globais) continuam só seus. Dentro do agente, o cofre, as chaves de API do painel, o login da conta de IA, as credenciais dos canais e a Tela também ficam com você. Você manda o convite de novo ou revoga o acesso quando quiser, e a lista guarda o histórico com as datas. As mensagens dele chegam ao agente marcadas como vindas de um colaborador. O envio do convite por e-mail é opcional: sem configurar nada, a tela mostra o texto pronto para você copiar e mandar por WhatsApp. Para o Central Agêntica MPV mandar o e-mail sozinho, veja as variáveis `YBCENTRAL_SMTP_*` em `web/docs/COLABORADORES.md`. Nada precisa ser feito para atualizar.
+**Convidar um colaborador.** Agora você pode convidar uma pessoa para conversar com um dos seus agentes de trabalho, sem dar acesso ao resto da Central Agêntica MPV. No menu ☰ do agente há o item **Convidar colaborador** (ou a página `/colaboradores`): você informa o e-mail da pessoa, e ela recebe o link, o login e uma senha temporária que vale por 7 dias. No primeiro acesso ela cria a própria senha e passa a usar aquele agente: a conversa e a leitura das sessões, das rotinas, da memória e dos arquivos. Ela não grava memória, arquivos nem configuração pelo painel, e o login da conta de IA do agente também fica só com você. Ela não sai desse agente: o Admin, os outros agentes e as telas da caixa inteira (chaves de API do sistema, convidar colaborador, configurações globais) continuam só seus. Dentro do agente, o cofre, as chaves de API do painel, o login da conta de IA, as credenciais dos canais e a Tela também ficam com você. Você manda o convite de novo ou revoga o acesso quando quiser, e a lista guarda o histórico com as datas. As mensagens dele chegam ao agente marcadas como vindas de um colaborador. O envio do convite por e-mail é opcional: sem configurar nada, a tela mostra o texto pronto para você copiar e mandar por WhatsApp. Para a Central Agêntica MPV mandar o e-mail sozinho, veja as variáveis `YBCENTRAL_SMTP_*` em `web/docs/COLABORADORES.md`. Nada precisa ser feito para atualizar.
 
 **Anexos na casa do agente.** Os arquivos enviados pela conversa agora são gravados pelo dono do agente, e não mais pelo root do servidor, para que uma pasta trocada por um atalho dentro da casa do agente não leve o arquivo para fora dela. Em instalações antigas, a pasta `uploads/` que o root tinha criado passa sozinha para o dono do agente no primeiro anexo; as pastas de dias antigos ficam como estão. Nada precisa ser feito para atualizar.
 
@@ -147,12 +147,12 @@ Nada precisa ser feito para atualizar.
 conversa aparece sozinho o aviso "Faça o login nos seus agentes", com um cartão para cada agente: o Admin, o agente principal e os demais.
 Você gera o link, entra na sua conta, cola o código e pronto, sem precisar achar a página Conectar conta. Quando todos
 conectam, o aviso mostra "Login efetuado" (nos dois agentes, no seu agente ou nos seus N agentes), o que fazer agora e o vídeo
-curto "Conhecendo o Central Agêntica MPV". "Fazer depois" fecha o aviso e ele não volta naquela aba. Quando esse aviso abre, ele toma o lugar do
+curto "Conhecendo a Central Agêntica MPV". "Fazer depois" fecha o aviso e ele não volta naquela aba. Quando esse aviso abre, ele toma o lugar do
 pop-up "Seu login do Claude expirou". A página Conectar conta continua no menu como plano B. Os cartões também passaram a
 mostrar com qual IA o agente vai entrar; por enquanto é a IA em que ele já foi criado, e trocar de IA ainda não está disponível.
 Nada precisa ser feito para atualizar.
 
-**Comando para entregar um Central Agêntica MPV instalado por outra pessoa.** Quando a equipe instala o Central Agêntica MPV na VPS de alguém e
+**Comando para entregar uma Central Agêntica MPV instalado por outra pessoa.** Quando a equipe instala a Central Agêntica MPV na VPS de alguém e
 quer entregar pronto, o comando `sudo ybcentral instalacao-remota` troca a senha do painel por uma senha forte nova, reinicia o
 painel e mostra uma única vez a mensagem pronta com o endereço, o usuário e a senha. A senha não fica guardada em lugar
 nenhum, só o hash. É opcional e não muda a instalação normal. Nada precisa ser feito para atualizar.
@@ -175,7 +175,7 @@ e nunca um agente. Nada muda no que você vê na tela Segurança, só ganha um a
 
 ### Como atualizar (ronda leve)
 
-Peça ao Admin, no chat: "atualiza o Central Agêntica MPV". Ele confirma com você e instala; agentes, conversas e configurações
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". Ele confirma com você e instala; agentes, conversas e configurações
 ficam como estão. Em servidor pequeno, o horário da ronda passa para as 04:00 a não ser que você já tenha escolhido o seu.
 
 **Um aviso de segurança só, no lugar da pilha de janelas.** Antes, cada falha crítica da ronda e cada boletim
@@ -184,12 +184,12 @@ abria a própria janela, e quem tinha várias precisava fechar uma por uma, todo
 tem o botão "Ver na Segurança". Fechar uma vez fecha tudo. Ela só volta sozinha se aparecer um problema novo, se
 algum ficar mais grave ou depois de 24 horas, no máximo uma vez por dia. Enquanto houver pendência, um selo
 discreto no alto da tela leva à Segurança. Nenhum aviso sumiu: cada falha continua na tela Segurança com os fatos e
-os botões de antes, e os boletins ganharam uma seção própria lá, "Avisos de segurança do Central Agêntica MPV", com Atualizar,
+os botões de antes, e os boletins ganharam uma seção própria lá, "Avisos de segurança da Central Agêntica MPV", com Atualizar,
 Lembrar depois e Entendi. Ideia de um aluno.
 
 ### Como atualizar este aviso
 
-Peça ao Admin, no chat: "atualiza o Central Agêntica MPV". Ele confirma com você e instala; agentes, conversas e configurações
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". Ele confirma com você e instala; agentes, conversas e configurações
 ficam como estão. Depois, no celular, feche o painel e abra de novo para o navegador baixar a tela nova. Na
 primeira visita a janela nova aparece uma vez; feche e ela só volta pelos motivos acima.
 
@@ -201,7 +201,7 @@ Tailscale; pede um código de uso único e a frase de confirmação, e religa so
 No terminal: `sudo ybcentral emergencia simular`. Detalhes em `docs/EMERGENCIA.md`.
 
 **Aviso de segurança no painel.** Quando a equipe publica um boletim sobre uma falha de segurança numa das
-ferramentas que o Central Agêntica MPV usa, o servidor percebe sozinho (uma leitura pública do GitHub a cada hora) e o painel
+ferramentas que a Central Agêntica MPV usa, o servidor percebe sozinho (uma leitura pública do GitHub a cada hora) e o painel
 mostra uma janela "Aviso de segurança", com a fonte oficial e o que muda, e um selo discreto que fica no alto das
 telas até o assunto se resolver. O botão Atualizar leva ao chat do Admin com o pedido já escrito; você só envia.
 Nada é instalado sem o seu sim, e ao atualizar o aviso some sozinho. Para desligar, ponha
@@ -209,7 +209,7 @@ Nada é instalado sem o seu sim, e ao atualizar o aviso some sozinho. Para desli
 
 **Ronda de segurança de fábrica.** Todo Central Agêntica MPV instalado passa a ter uma ronda que, três vezes ao dia (07:00,
 13:00 e 19:00, no horário do servidor), procura falhas de segurança que afetam aquela instalação: os pacotes do
-servidor, o kernel que está rodando, o que escuta na rede, os pacotes do Central Agêntica MPV e os serviços que você conectou
+servidor, o kernel que está rodando, o que escuta na rede, os pacotes da Central Agêntica MPV e os serviços que você conectou
 (Notion, Slack, Google Drive e outros). Quem não usa o Notion não recebe aviso sobre o Notion. As falhas aparecem
 em três níveis: o que a ronda corrigiu sozinha, o que precisa da sua decisão e o que dá para corrigir sem
 pressa. Só quando há uma falha nova o Admin é avisado e conta a você no chat; nos outros dias ninguém fala nada.
@@ -233,7 +233,7 @@ aprovar sem querer o comando que surgiu em seguida, e o botão Aprovar de uma te
 
 ### Como atualizar
 
-1. **Peça ao Admin, no chat: "atualiza o Central Agêntica MPV".** A atualização reconstrói a imagem e recria os
+1. **Peça ao Admin, no chat: "atualiza a Central Agêntica MPV".** A atualização reconstrói a imagem e recria os
    agentes, e é isso que liga o medidor: a medição sai do runner (o processo que mantém cada agente vivo)
    e do hook novo que ele grava a cada subida. Agente que você deixou parado continua com o runner
    antigo e mostra "sem dado" até ser ligado de novo.
@@ -248,10 +248,10 @@ aprovar sem querer o comando que surgiu em seguida, e o botão Aprovar de uma te
    arquivo as duas linhas sobre "uso da assinatura" e "estado de cada agente", sem apagar o que você
    escreveu. Sem elas o Admin não sabe onde fica o medidor quando você perguntar.
 5. **Para receber os avisos no celular,** ative "Avisos neste aparelho" na tela de Lembretes, se
-   ainda não ativou. No iPhone, o aviso só chega com o Central Agêntica MPV instalado na tela de início. Se o app
+   ainda não ativou. No iPhone, o aviso só chega com a Central Agêntica MPV instalado na tela de início. Se o app
    instalado abrir com aviso de erro, feche e abra de novo para ele buscar os arquivos novos.
 6. **Para ter a ronda de segurança, clique em Instalar na faixa de nova versão do painel ou peça ao Admin:
-   "atualiza o Central Agêntica MPV".** Depois de atualizar, a ronda faz a primeira rodada sozinha e passa a varrer o
+   "atualiza a Central Agêntica MPV".** Depois de atualizar, a ronda faz a primeira rodada sozinha e passa a varrer o
    servidor três vezes ao dia, sem você configurar nada. Quando aparecer uma falha nova que afeta o seu
    servidor, o Admin avisa no chat e o painel mostra o que fazer. Nesta versão a lista de correções que a
    ronda pode aplicar sozinha começa vazia, então nada é mexido sem o seu sim. Se mais tarde ela passar a
@@ -324,7 +324,7 @@ passo primeiro.
 
 ### Como atualizar (caixa de cofre)
 
-1. **Peça ao Admin, no chat: "atualiza o Central Agêntica MPV".** Isso traz a tela nova. Se o painel ainda mostrar o
+1. **Peça ao Admin, no chat: "atualiza a Central Agêntica MPV".** Isso traz a tela nova. Se o painel ainda mostrar o
    cartão antigo, reinicie-o de fora do chat com `sudo systemctl restart ybcentral-web`. No celular, feche e
    abra o app uma vez para ele buscar os arquivos novos.
 2. **Para os agentes que você já tem**, rode `sudo ybcentral agente identidade <agente>` para cada um. Assim
@@ -338,7 +338,7 @@ um relatório, uma pesquisa grande) vai para um card na aba Sessões, e o agente
 quando terminar. Tarefa de poucos minutos ele passa para um ajudante em segundo plano. Assim ele
 continua respondendo você enquanto trabalha.
 
-1. **Peça ao Admin, no chat: "atualiza o Central Agêntica MPV".** A atualização recria os agentes, e é nesse passo
+1. **Peça ao Admin, no chat: "atualiza a Central Agêntica MPV".** A atualização recria os agentes, e é nesse passo
    que a regra entra nas instruções de cada um, inclusive dos que você já tem. Nada do que você
    personalizou (`AGENT.md`, `CLAUDE.md`, memória) é tocado.
 2. **Agente que estava desligado** só recebe a regra quando for ligado de novo. Se quiser aplicar sem
@@ -401,11 +401,11 @@ sobrevivem à atualização.
 
 ### Como atualizar
 
-Para quem já tem o Central Agêntica MPV instalado, na ordem:
+Para quem já tem a Central Agêntica MPV instalado, na ordem:
 
-1. **Peça ao Admin, no chat: "atualiza o Central Agêntica MPV".** Ele faz a simulação, conta em palavras simples o
+1. **Peça ao Admin, no chat: "atualiza a Central Agêntica MPV".** Ele faz a simulação, conta em palavras simples o
    que muda e só instala depois do seu ok. Pelo terminal, o caminho é `sudo ybcentral atualizar --simular`
-   e, depois de ler o relatório, `sudo ybcentral atualizar --ok-do-dono --segundo-plano`. Se o seu Central Agêntica MPV é
+   e, depois de ler o relatório, `sudo ybcentral atualizar --ok-do-dono --segundo-plano`. Se o sua Central Agêntica MPV é
    anterior a esta versão (instalado até 19/10/2026), o comando que você tem ainda não conhece o
    `--ok-do-dono`: rode só `sudo ybcentral atualizar --segundo-plano`. A partir desta versão, toda
    atualização passa pelo seu ok.
@@ -416,7 +416,7 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
    continua de onde estava.
 3. **Regrave a identidade dos agentes que você já tem.** Nesta versão eles aprendem a lidar com a
    mensagem falada que chega marcada como `[áudio transcrito]` (ela pode ter erro de transcrição). A
-   instrução fica na parte que o próprio Central Agêntica MPV mantém, e a atualização não regrava essa parte sozinha.
+   instrução fica na parte que o própria Central Agêntica MPV mantém, e a atualização não regrava essa parte sozinha.
    Rode `sudo ybcentral agente identidade <agente>` para cada um. O comando não mexe no `CLAUDE.md`, no
    `AGENT.md` nem na memória que você personalizou; só refaz o texto de plataforma. Agentes criados
    depois desta versão já nascem com a instrução, e o Admin recebe a dele na reinstalação.
@@ -424,15 +424,15 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
    nova sozinho, mas se a conversa abrir com aviso de erro, feche e abra o app de novo.
 5. **Se você personalizou o `CLAUDE.md` ou o `AGENTS.md` do Admin,** a atualização não troca o seu
    arquivo e grava o modelo novo ao lado, como `.novo`. Leve para o seu arquivo duas seções do `.novo`,
-   sem apagar o que você escreveu: "Personalizar o programa do Central Agêntica MPV" e o parágrafo do ok do dono na
-   seção "Atualizar o Central Agêntica MPV". Sem elas o Admin não segue o registro de personalizações nem pede o seu
+   sem apagar o que você escreveu: "Personalizar o programa da Central Agêntica MPV" e o parágrafo do ok do dono na
+   seção "Atualizar a Central Agêntica MPV". Sem elas o Admin não segue o registro de personalizações nem pede o seu
    ok antes de atualizar.
 6. **Se alguém mudou o programa direto em `/opt/ybcentral/app`,** nada se perde: antes de copiar o
    programa novo, o instalador guarda tudo o que foi mudado em
    `/opt/ybcentral/admin/personalizacoes-migracao/<data>/` e deixa um levantamento pendente. Depois de
    atualizar, o Admin roda `sudo ybcentral personalizacoes levantar`, conta a você o que achou, confirma
    cada mudança, reaplica na branch `personalizacoes`, registra em `/opt/ybcentral/admin/PERSONALIZACOES.md`
-   e fecha com `sudo ybcentral personalizacoes concluir`. O passo a passo está no capítulo "Quem já tinha o
+   e fecha com `sudo ybcentral personalizacoes concluir`. O passo a passo está no capítulo "Quem já tinha a
    Central Agêntica MPV antes desta versão" do `docs/PERSONALIZAR.md`.
 
 ### Adicionado
@@ -448,7 +448,7 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
   depois de guardar o estado de agora (`antes-de-restaurar`), parando e religando os agentes e reiniciando o
   Admin só no fim, solto do chat. Recusa backup de outra versão sem `--mesmo-assim`. Guia em `docs/BACKUP.md`.
 - `lib/backup.sh` com os pontos de extensão `backup_caminhos_extras`, `backup_aplicar_retencao`,
-  `depois_de_restaurar` e `depois_de_atualizar`, para edições que estendem o Central Agêntica MPV.
+  `depois_de_restaurar` e `depois_de_atualizar`, para edições que estendem a Central Agêntica MPV.
 - `ybcentral atualizar` agora volta sozinho ao backup quando o `install.sh` da versão nova falha ou a conferência
   de configuração reprova, explicando o que deu errado, o que foi desfeito e o que fazer. Agente que não sobe
   nunca faz voltar (o conserto é `ybcentral agente recriar <slug> --forcar`). `--sem-voltar-sozinho` desliga.
@@ -465,7 +465,7 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
   agente. A conversa em que você está nunca mostra bolinha, e ela só conta como lida quando você chega ao fim dela. Quem guarda o que já foi lido é o servidor, então o
   celular e o computador concordam. Ao atualizar, ninguém aparece com tudo aceso: cada agente começa zerado. Também
   existe como rota de API (`GET /api/v1/nao-lidas` e `POST /api/v1/agents/<agente>/lido`).
-- **Mudança muito importante para quem personaliza o Central Agêntica MPV.** O seu Central Agêntica MPV vai ser personalizado por
+- **Mudança muito importante para quem personaliza a Central Agêntica MPV.** O sua Central Agêntica MPV vai ser personalizado por
   você e continuar sendo atualizado pela equipe do Central Agêntica MPV. Para manter a estabilidade e preservar as suas
   alterações, daqui para frente toda personalização do programa (um botão novo, uma cor, um comportamento
   diferente) segue duas regras: o Admin lê antes o guia `docs/PERSONALIZAR.md`, que mostra a arquitetura
@@ -473,7 +473,7 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
   `/opt/ybcentral/admin/PERSONALIZACOES.md` (data, o que você pediu, arquivos, por quê e como testar). Na hora
   de atualizar, o `ybcentral atualizar` confere esse registro contra a versão nova: se nada cruza, reaplica as
   suas personalizações por cima; se algo cruza, para antes de mexer e o Admin pergunta se pode ajustar.
-  Quem já usava o Central Agêntica MPV passa por uma migração na primeira atualização: o que tinha sido mudado direto
+  Quem já usava a Central Agêntica MPV passa por uma migração na primeira atualização: o que tinha sido mudado direto
   no programa é guardado antes de a versão nova entrar, e o Admin levanta e registra tudo com você
   (`ybcentral personalizacoes levantar`).
 - Antes de instalar uma versão nova, o `ybcentral atualizar` mostra o que muda: os commits, os itens novos do
@@ -502,7 +502,7 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
 - Regra do projeto: passo de atualização que o `ybcentral atualizar` não faz sozinho vai numa subseção
   "Como atualizar" do CHANGELOG, escrita para o dono, e o roteiro `docs/ATUALIZAR.md` passou a ler essas
   subseções antes de aplicar. Um teste (`tests/changelog`) reprova frase dirigida ao modelo.
-- `ybcentral atualizar`: atualiza o Central Agêntica MPV sem perder nada do dono. Faz backup datado em
+- `ybcentral atualizar`: atualiza a Central Agêntica MPV sem perder nada do dono. Faz backup datado em
   `/var/backups/ybcentral/`, baixa a versão nova (`git pull --ff-only`), roda o instalador, reconstrói a
   imagem, recria o container de cada agente (`ybcentral agente recriar`) mantendo casa, cofre e rotinas,
   confere que nenhuma linha de configuração, chave, token ou arquivo de identidade sumiu ou mudou e agenda
@@ -560,10 +560,10 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
 - Modo monitor de cards: `ybcentral-card abrir --monitor` abre um card vigiado pelo `ybcentral-monitor`, um vigia
   sem modelo que confere o card de tempos em tempos e só chama o agente quando o critério de entregue aparece
   ou quando algo trava. Guia em `docs/MODO-MONITOR.md`.
-- Aviso de novidades depois de atualizar: na primeira conversa depois que o Central Agêntica MPV é atualizado, o agente (e
+- Aviso de novidades depois de atualizar: na primeira conversa depois que a Central Agêntica MPV é atualizado, o agente (e
   o Admin) conta ao dono, em poucas linhas, o que veio de novo e dá para usar. Cada agente avisa uma vez só,
   e agente criado depois da atualização não recebe aviso do que já nasceu com ele. Guia em `docs/NOVIDADES.md`.
-- Aviso de versão nova: quando sai uma atualização do Central Agêntica MPV no GitHub oficial, o painel mostra uma faixa
+- Aviso de versão nova: quando sai uma atualização da Central Agêntica MPV no GitHub oficial, o painel mostra uma faixa
   discreta ("Nova versão disponível", com o resumo do que mudou, "Instalar" e "Agora não") e o Admin conta
   ao dono, no chat, que saiu versão nova e pergunta se ele quer instalar (o resumo fica só na faixa). Nada é baixado nem instalado sem o ok do
   dono: o `ybcentral atualizar` continua manual. A checagem é uma leitura pública do GitHub a cada 6 horas, sem
@@ -624,7 +624,7 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
 - Se o app abrir com uma página antiga guardada, sem o módulo de mídias, a conversa continua funcionando e a aba
   de arquivos pede para recarregar, em vez de a tela ficar em branco.
 - Foto aberta no visor: o gesto de ampliar com os dedos não seleciona mais a imagem nem abre o menu de segurar.
-- Atualizar o Central Agêntica MPV não apaga mais as chaves do `web.env`.
+- Atualizar a Central Agêntica MPV não apaga mais as chaves do `web.env`.
 - O instalador escolhe o motor do Admin (Claude ou Codex) pelo login que existe, não pelo programa instalado.
 - Campos de texto com 16px ou mais no celular: o app instalado não dá mais zoom ao tocar num campo.
 - Ubuntu 26.04 passa com aviso, e os problemas da instalação ao vivo de 17/10 foram acertados.
@@ -637,7 +637,7 @@ Para quem já tem o Central Agêntica MPV instalado, na ordem:
 
 ## [0.2.1] - 2026-08-04
 
-Última versão do Central Agêntica MPV como plugin do Claude Code, com o assistente `/ybcentral:setup`, em modo
+Última versão da Central Agêntica MPV como plugin do Claude Code, com o assistente `/ybcentral:setup`, em modo
 local (no computador da pessoa) ou servidor (numa VPS Linux). A v1 substitui esse formato pelo
 instalador, e o plugin não faz parte desta publicação.
 

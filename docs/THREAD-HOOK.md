@@ -70,7 +70,7 @@ Log: `<ws>/.ybcentral/logs/hook-telegram-thread.log`.
 Nos assistentes do autor, os crons postam via um script próprio que grava um arquivo `*-outbound.jsonl`, a
 fonte que o hook mescla pra pegar posts de cron que NAO passam pela tool de reply da sessao.
 
-No Central Agêntica MPV, os crons falam com o dono via `scripts/notify-owner.sh` (Bot API direto), que
+Na Central Agêntica MPV, os crons falam com o dono via `scripts/notify-owner.sh` (Bot API direto), que
 **nao grava outbound log**. Consequencias:
 
 - Envios do assistente que passam pela **tool de reply da sessao viva** (resposta direta e a

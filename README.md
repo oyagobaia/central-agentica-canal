@@ -16,7 +16,7 @@
 
 ## O que é
 
-O Central Agêntica MPV instala num servidor Linux seu um painel web com login e chat, um agente de sistema (o
+A Central Agêntica MPV instala num servidor Linux seu um painel web com login e chat, um agente de sistema (o
 **Admin**) e a infraestrutura para rodar **agentes de trabalho**, cada um no próprio container, com a
 própria casa de arquivos e o próprio cofre de chaves. Você cria os agentes conversando com o Admin, que
 também cuida da máquina.
@@ -33,8 +33,16 @@ português e pode ser executado de novo sem estragar nada. Ao terminar, ele entr
 um link de primeiro acesso (uso único, 30 minutos), onde você cadastra a senha no navegador.
 
 ```sh
-git clone https://github.com/oyagobaia/ybcentral
-cd ybcentral
+curl -fsSLO https://raw.githubusercontent.com/oyagobaia/central-agentica-canal/main/instalar/chave-de-leitura.sh
+less chave-de-leitura.sh            # leia antes de rodar
+sudo bash chave-de-leitura.sh gerar
+```
+
+Mande ao MPV a linha que aparecer (é a parte pública da chave; a privada nunca sai da VPS). Quando o MPV liberar:
+
+```sh
+sudo bash chave-de-leitura.sh clonar /root/ybcentral
+cd /root/ybcentral
 sudo ./install.sh --usuario admin --com-imagem
 ```
 
@@ -47,7 +55,7 @@ O guia completo, com requisitos, etapas e o que muda na máquina, está em [INST
 - **Container por agente**: casa de arquivos própria e sem acesso aos vizinhos nem ao servidor ([docs/SEGURANCA.md](docs/SEGURANCA.md#isolamento-entre-agentes)).
 - **Cofre por agente**: chaves de serviço que valem só para quem as guardou ([docs/COFRE-POR-API.md](docs/COFRE-POR-API.md)).
 - **Provedores**: Claude Code ou Codex, escolhidos na instalação ([docs/PROVEDORES.md](docs/PROVEDORES.md)).
-- **Manual**: o que o Central Agêntica MPV faz e como se usa, página por página, aberto pelo painel em ☰ > Manual ([docs/manual/README.md](docs/manual/README.md)).
+- **Manual**: o que a Central Agêntica MPV faz e como se usa, página por página, aberto pelo painel em ☰ > Manual ([docs/manual/README.md](docs/manual/README.md)).
 - **Mesa de tarefas**: uma tela com o que cada agente faz, o que travou e o que espera por você ([docs/MESA-DE-TAREFAS.md](docs/MESA-DE-TAREFAS.md)).
 - **Memória semântica**: o agente acha o que você disse pelo sentido, mesmo com outras palavras ([docs/MEMORIA-SEMANTICA.md](docs/MEMORIA-SEMANTICA.md)).
 - **Canais**: o chat do painel vem pronto; o WhatsApp é um canal opcional ([docs/CANAL-WHATSAPP.md](docs/CANAL-WHATSAPP.md)).
@@ -57,7 +65,7 @@ O guia completo, com requisitos, etapas e o que muda na máquina, está em [INST
 
 ## Como funciona
 
-O navegador chega ao Caddy (portas 80 e 443, HTTPS), que entrega o Central Agêntica MPV Web em `127.0.0.1`. O Web
+O navegador chega ao Caddy (portas 80 e 443, HTTPS), que entrega a Central Agêntica MPV Web em `127.0.0.1`. O Web
 autentica você e encaminha cada mensagem ao **runner** correto, que mantém viva a sessão do Claude Code ou
 do Codex. O runner do Admin roda no servidor; o de cada agente roda dentro do container do agente. As
 respostas voltam pelo mesmo caminho para o chat. A descrição completa está em

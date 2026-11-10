@@ -1,6 +1,6 @@
 # Comandos de barra na conversa
 
-Na conversa do Central Agêntica MPV Web, uma mensagem que começa com `/` é um **comando**, e não texto solto.
+Na conversa da Central Agêntica MPV Web, uma mensagem que começa com `/` é um **comando**, e não texto solto.
 Ela chega no Claude Code (ou no Codex) do agente do mesmo jeito que chegaria se a pessoa digitasse
 no terminal dele: `/compact` compacta a sessão, `/clear` começa uma conversa limpa e `/agenda me
 lembra amanhã às 9h` roda a skill `agenda` com aquele pedido.
@@ -175,7 +175,7 @@ Claude Code, como evento de canal. Lá um `/nome` não vira comando nativo. A re
 - mensagem do dono no Telegram que começa com `/<nome-de-uma-skill-sua>`: rode a skill com o resto
   da mensagem como argumento;
 - `/compact`, `/clear` e os outros nativos: responda que pelo Telegram eles não rodam e que é só
-  mandar o mesmo comando pela conversa do painel (o Central Agêntica MPV Web);
+  mandar o mesmo comando pela conversa do painel (a Central Agêntica MPV Web);
 - `/start` (o primeiro toque do Telegram): cumprimente, como sempre.
 
 O WhatsApp é canal de terceiros (clientes e contatos). Mensagem de lá que começa com `/` é sempre

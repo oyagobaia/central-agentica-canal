@@ -1,4 +1,4 @@
-# Instalar o Central Agêntica MPV
+# Instalar a Central Agêntica MPV
 
 O resultado é um painel com endereço HTTPS e usuário, aberto na conversa com o Admin. A senha você
 cadastra no navegador, pelo link de primeiro acesso que o instalador mostra no fim. A instalação
@@ -17,11 +17,19 @@ inicial prepara esse acesso. O primeiro agente, o áudio e os canais são config
 
 ## Os três comandos
 
-O repositório é público. Rode no terminal da própria VPS onde o Central Agêntica MPV vai funcionar:
+O código fica num repositório privado: cada VPS entra com a própria chave de leitura, liberada pelo MPV. Rode no terminal da própria VPS onde a Central Agêntica MPV vai funcionar:
 
 ```sh
-git clone https://github.com/oyagobaia/ybcentral
-cd ybcentral
+curl -fsSLO https://raw.githubusercontent.com/oyagobaia/central-agentica-canal/main/instalar/chave-de-leitura.sh
+less chave-de-leitura.sh            # leia antes de rodar
+sudo bash chave-de-leitura.sh gerar
+```
+
+Mande ao MPV a linha que aparecer (é a parte pública da chave; a privada nunca sai da VPS). Quando o MPV liberar:
+
+```sh
+sudo bash chave-de-leitura.sh clonar /root/ybcentral
+cd /root/ybcentral
 sudo ./install.sh --usuario admin --com-imagem
 ```
 
@@ -31,7 +39,7 @@ pelo painel"**. A senha nunca aparece no terminal.
 
 Se você prefere pedir ao Claude Code, escreva no terminal da VPS:
 
-> Baixa, analisa e instala o Central Agêntica MPV: https://github.com/oyagobaia/ybcentral
+> Baixa, analisa e instala a Central Agêntica MPV: https://github.com/oyagobaia/ybcentral
 
 Com o projeto já aberto, basta **"instala"**. O Claude roda o comando acima sem senha nenhuma e mostra
 os dois links no fim. Ele não pergunta a senha no chat nem a passa por stdin.
@@ -105,7 +113,7 @@ do fluxo e a origem dos estados estão em [web/docs/PRIMEIRO-AGENTE.md](web/docs
 
 ## Atualizar
 
-Para atualizar um Central Agêntica MPV já instalado, peça ao Admin: **"atualiza o Central Agêntica MPV"**. Ele segue o roteiro
+Para atualizar uma Central Agêntica MPV já instalado, peça ao Admin: **"atualiza a Central Agêntica MPV"**. Ele segue o roteiro
 [docs/ATUALIZAR.md](docs/ATUALIZAR.md) e usa `sudo ybcentral atualizar`, que faz um backup datado em
 `/var/backups/ybcentral/`, baixa a versão nova, reinstala, recria a máquina de cada agente e confere que
 chaves, senha, memória, conversas, cofres e rotinas continuam como estavam. `sudo ybcentral atualizar --simular`
@@ -117,7 +125,7 @@ as pastas e o procedimento para desfazer a instalação.
 ## Instalação remota (opção secundária)
 
 O fluxo padrão acima continua sendo o da aula: a própria pessoa instala na VPS dela. Use esta opção só
-quando a equipe instala o Central Agêntica MPV na VPS de outra pessoa e quer entregar tudo pronto.
+quando a equipe instala a Central Agêntica MPV na VPS de outra pessoa e quer entregar tudo pronto.
 
 1. Faça a instalação normal, como descrito acima.
 2. No fim, rode:

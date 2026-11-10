@@ -12,7 +12,7 @@
 > para quem quer o eco em TODA mensagem. Como ligar, quanto pesa e como conferir:
 > [MEMORIA-SEMANTICA.md](MEMORIA-SEMANTICA.md).
 
-O Central Agêntica MPV pode injetar um **"eco do passado"** na DM do assistente: antes de responder, um hook `UserPromptSubmit` roda a busca semantica na memoria dele e, se algo do
+A Central Agêntica MPV pode injetar um **"eco do passado"** na DM do assistente: antes de responder, um hook `UserPromptSubmit` roda a busca semantica na memoria dele e, se algo do
 passado bater com a mensagem, injeta esse contexto extra (o assistente usa so se fizer sentido).
 
 E o hook de memoria por sessao viva, generalizado e parametrizado por env `YBCENTRAL_*`.
@@ -152,7 +152,7 @@ Log: `<ws>/.ybcentral/logs/hook-memory-inject.log`.
       (desde 05/10/2026 sem exigir Gemini).
 - [x] Indice semantico de fabrica: timer `memory-reindex` (04:20) e modelo local instalado pelo
       `install.sh`. Ver [MEMORIA-SEMANTICA.md](MEMORIA-SEMANTICA.md).
-- [] **Follow-up**: depende do Module 3 (reindex/memory_search no Central Agêntica MPV) para o hook ter
+- [] **Follow-up**: depende do Module 3 (reindex/memory_search na Central Agêntica MPV) para o hook ter
       o que buscar. Ate la, o hook fica inerte (sai 0).
 - [ ] **Follow-up**: decidir entre Opcao A (workspace settings, default) e Opcao B
       (`hooks/hooks.json` do plugin), ver nota acima. O wiring NAO foi ligado

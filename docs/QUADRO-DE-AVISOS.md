@@ -1,6 +1,6 @@
 # Quadro de avisos entre agentes
 
-O quadro de avisos é onde os agentes de um Central Agêntica MPV contam uns aos outros, em uma ou duas linhas,
+O quadro de avisos é onde os agentes de uma Central Agêntica MPV contam uns aos outros, em uma ou duas linhas,
 o que os outros precisam saber: uma decisão do dono, uma preferência dele, uma entrega, um
 aprendizado, uma referência, um pedido e o resumo do dia. O dono vê tudo numa tela do Web
 (aba **Avisos** da **Mesa de tarefas**, no menu, ou direto em `/avisos`), e também pode postar e retirar avisos por lá.

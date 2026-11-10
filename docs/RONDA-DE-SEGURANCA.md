@@ -5,7 +5,7 @@ que afetam **aquela** instalação, e avisa o dono dela. Quem não usa o Notion 
 a ronda monta tudo a partir do que existe no seu servidor.
 
 Ela é diferente do [aviso de segurança do painel](BOLETINS-DE-SEGURANCA.md). O boletim é uma notícia que a equipe
-do Central Agêntica MPV publica sobre as ferramentas do próprio programa. A ronda olha o seu servidor inteiro, no seu ritmo,
+da Central Agêntica MPV publica sobre as ferramentas do próprio programa. A ronda olha o seu servidor inteiro, no seu ritmo,
 sem esperar a equipe publicar nada.
 
 ## O que a ronda olha
@@ -15,14 +15,14 @@ O inventário é guardado em `/var/lib/ybcentral/seguranca/inventario.json`:
 - **Os pacotes do servidor** (`dpkg`) e o **kernel que está em execução**. Um kernel antigo, instalado mas
   desligado, não conta como exposto.
 - **O que escuta na rede**: as portas públicas, o programa que as abriu e o pacote dono dele.
-- **O app do Central Agêntica MPV**: os `package-lock.json` de `/opt/ybcentral/app`, os pacotes Python fixados e a imagem base
+- **O app da Central Agêntica MPV**: os `package-lock.json` de `/opt/ybcentral/app`, os pacotes Python fixados e a imagem base
   do `container/Containerfile`.
-- **O que você conectou no Central Agêntica MPV**: os servidores MCP, os plugins e as skills do Admin e de cada agente.
+- **O que você conectou na Central Agêntica MPV**: os servidores MCP, os plugins e as skills do Admin e de cada agente.
   Eles viram "serviços externos" com nome de gente (Notion, Google Drive, Slack, GitHub...), e, quando o
   pacote e a versão aparecem na configuração, entram na consulta de falhas. O mapa de nomes fica em
   `seguranca/ronda/servicos.json`. Um serviço que o mapa não conhece entra com o nome que você deu a ele.
 
-A parte pessoal do inventário (o app e os serviços conectados) é refeita a cada 3 dias e sempre que o Central Agêntica MPV
+A parte pessoal do inventário (o app e os serviços conectados) é refeita a cada 3 dias e sempre que a Central Agêntica MPV
 é atualizado. Quando algo novo entra, fica registrado: "acrescentado à ronda em 31/10/2026: Notion via MCP do
 agente luna". Os pacotes do servidor, o kernel e as portas são lidos de novo em toda rodada, porque uma
 atualização do sistema não pode fazer a ronda avisar de uma falha que já foi corrigida.
@@ -75,7 +75,7 @@ execução ou num pacote exposto à rede, ou a de gravidade crítica ou alta con
 tem. Para os pacotes do Ubuntu vale a prioridade que o próprio Ubuntu deu, e não a nota genérica da falha.
 
 **Só se corrige sozinho o que uma pessoa escreveu antes** no catálogo `seguranca/acoes-permitidas.json`, que
-vai junto com o Central Agêntica MPV e só muda por uma nova versão. Nada vem do texto de notícia nem é inventado pela IA. Hoje
+vai junto com a Central Agêntica MPV e só muda por uma nova versão. Nada vem do texto de notícia nem é inventado pela IA. Hoje
 o catálogo tem uma única ação, uma **proteção provisória** (desligar o MPTCP), que a ronda só aplica enquanto a correção
 oficial não existe. Veja "O catálogo de ações" e "Quando a correção ainda não saiu".
 
@@ -114,7 +114,7 @@ nenhum aceita comando livre. Todo valor é conferido por formato antes de ser us
 
 | Tipo | O que faz | Checagem antes | Como desfaz |
 | --- | --- | --- | --- |
-| `nft-tabela` | carrega uma tabela do firewall nft a partir de um arquivo do próprio Central Agêntica MPV (`arquivo`, `tabela`) e liga uma unidade do systemd que a recarrega no boot | `nft -c -f` só valida | desliga e apaga a unidade e o arquivo, e apaga a tabela |
+| `nft-tabela` | carrega uma tabela do firewall nft a partir de um arquivo do própria Central Agêntica MPV (`arquivo`, `tabela`) e liga uma unidade do systemd que a recarrega no boot | `nft -c -f` só valida | desliga e apaga a unidade e o arquivo, e apaga a tabela |
 | `sysctl` | grava `/etc/sysctl.d/90-ybcentral-ronda-<id>.conf` e aplica (`chave`, `valor`) | lê o valor atual; recusa se a chave não existe | apaga o arquivo e volta o valor anterior |
 | `apt-pacote` | `apt-get install --only-upgrade <pacote>=<versao>` (`pacote`, `versao`) | `apt-get -s` simula; `needrestart -b` não pode mostrar serviço esperando reinício; sem `needrestart` a ronda considera que pode exigir reinício | reinstala a versão anterior |
 

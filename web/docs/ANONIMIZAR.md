@@ -1,4 +1,4 @@
-# Anonimizar documentos na API do Central Agêntica MPV Web
+# Anonimizar documentos na API da Central Agêntica MPV Web
 
 Troca dados pessoais dos documentos por marcadores (`[PESSOA_1]`, `[CPF_1]`) antes de o agente ler. Estas
 rotas são do dono, usadas pela tela Anonimizar e pela conversa. Todas exigem sessão, menos `GET .../docs.md`, que é pública (o agente lê sem credencial); POST, PUT e DELETE

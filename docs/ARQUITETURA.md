@@ -1,6 +1,6 @@
-# Arquitetura do Central Agêntica MPV v1
+# Arquitetura da Central Agêntica MPV v1
 
-O Central Agêntica MPV reúne um painel web, um Admin e agentes de trabalho em uma VPS Ubuntu.
+A Central Agêntica MPV reúne um painel web, um Admin e agentes de trabalho em uma VPS Ubuntu.
 O dono entra pelo navegador e conversa com o Admin para criar seu primeiro agente.
 Telegram e outros canais são conexões opcionais, configuradas depois.
 

@@ -1,10 +1,10 @@
-# Aviso de segurança do Central Agêntica MPV
+# Aviso de segurança da Central Agêntica MPV
 
-Quando sai um boletim de segurança do Central Agêntica MPV (uma falha publicada numa das ferramentas que o
+Quando sai um boletim de segurança da Central Agêntica MPV (uma falha publicada numa das ferramentas que o
 sistema usa, já conferida pela equipe que mantém o código-base), o servidor percebe sozinho (uma consulta de
 leitura ao GitHub a cada hora) e o painel o inclui no aviso único "Seu ambiente está em risco" (uma
 janela só, junto com as falhas críticas da ronda) e no selo discreto no alto das telas. O detalhe de cada
-boletim e as ações ficam na tela Segurança, seção "Avisos de segurança do Central Agêntica MPV". Nada é baixado nem instalado sem o ok do dono: a atualização
+boletim e as ações ficam na tela Segurança, seção "Avisos de segurança da Central Agêntica MPV". Nada é baixado nem instalado sem o ok do dono: a atualização
 continua sendo feita pelo Admin, com o sim dele.
 
 Estas rotas são **só do dono, pelo painel** (sessão do navegador) e do Admin, no servidor. Agente
@@ -44,7 +44,7 @@ Mais graves primeiro.
 ```
 
 - `severidade`: `CRITICAL`, `HIGH`, `MEDIUM`, `LOW` ou `desconhecida`.
-- `acao`: `atualizar-ybcentral` (a correção está na versão nova do Central Agêntica MPV), `atualizar-sistema` (a
+- `acao`: `atualizar-ybcentral` (a correção está na versão nova da Central Agêntica MPV), `atualizar-sistema` (a
   correção está nos pacotes do servidor), `parar-servico` ou `aguardar` (a correção ainda não saiu).
 - `publicado_em`: quando a **falha** foi publicada pela fonte oficial. `boletim_em`: quando o boletim foi preparado.
 - `mostrar_modal`: o servidor considera que o boletim ainda não foi adiado nem dispensado. Fica falso por 24

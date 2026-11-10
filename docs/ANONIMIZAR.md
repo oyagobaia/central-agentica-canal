@@ -7,7 +7,7 @@ você continua lendo tudo completo.
 ## O que faz
 
 1. Você liga a opção para um agente, na tela **Anonimizar** (menu ☰).
-2. Quando você manda um documento pelo clipe da conversa, o Central Agêntica MPV lê o arquivo, troca os dados pessoais
+2. Quando você manda um documento pelo clipe da conversa, a Central Agêntica MPV lê o arquivo, troca os dados pessoais
    por marcadores e entrega ao agente só a cópia anonimizada, com o nome `doc-<código>.anon.<tipo>`. O
    original não entra na pasta do agente, e o nome original do arquivo também não (nome de arquivo é dado
    pessoal).

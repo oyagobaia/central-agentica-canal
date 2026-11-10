@@ -1,6 +1,6 @@
 # Paridade Claude e Codex
 
-O Central Agêntica MPV tem dois motores pela assinatura: o **Claude** (Claude Code, login claude.ai) e o
+A Central Agêntica MPV tem dois motores pela assinatura: o **Claude** (Claude Code, login claude.ai) e o
 **ChatGPT** (Codex CLI, login ChatGPT). Outras IAs entram só por chave de API. O Claude fica como
 está; o objetivo é que o agente no Codex tenha tudo o que o agente no Claude tem, a não ser o que é
 produto exclusivo da Anthropic, e que essas exceções tenham um caminho alternativo ou fiquem
@@ -70,7 +70,7 @@ agente (régua: feature de ~2 mil linhas leva 10 a 30 min).
 | Quadro de avisos | hook `avisos` (`hooks/avisos.py`) | parcial | postar funciona; a leitura é hook | mesmo hook nativo; seção que falta no `AGENTS.md.tmpl` | (incluso acima) |
 | Contexto de início e pós-compactação | hook `SessionStart` (`hooks/session-context.sh`, `avisos-reset`) | não funciona | `hooks/hooks.json` só chega ao Claude | `SessionStart` nativo do Codex (`source` = `startup`, `resume`, `compact`) | (incluso acima) |
 | Fio do Telegram na mensagem | hook `inject-telegram-thread.py` | não se aplica | depende do Telegram | volta junto com a ponte de Telegram | (na ponte) |
-| Skills do Central Agêntica MPV | link em `~/.claude/skills` (`bin/ybcentral:926-940`) | parcial | só o painel contorna, mandando o caminho do `SKILL.md` (`web/lib/comandos.js:357`) | linkar as mesmas pastas em `.agents/skills` do agente Codex; trocar `${CLAUDE_PLUGIN_ROOT}` pelo caminho `.ybcentral/plugin` que já existe | 0,5 |
+| Skills da Central Agêntica MPV | link em `~/.claude/skills` (`bin/ybcentral:926-940`) | parcial | só o painel contorna, mandando o caminho do `SKILL.md` (`web/lib/comandos.js:357`) | linkar as mesmas pastas em `.agents/skills` do agente Codex; trocar `${CLAUDE_PLUGIN_ROOT}` pelo caminho `.ybcentral/plugin` que já existe | 0,5 |
 | Comandos `/ybcentral:*` | namespace do plugin | exclusivo Anthropic | o Codex não tem plugin com namespace de comandos | a skill nativa cobre o mesmo uso (o agente chama a skill pelo nome) | (nas skills) |
 | Leitura da conversa (`thread_log`) | transcript JSONL | funciona | `scripts/_lib/thread_log.py:279-281,510`; `test_thread_log_rollout.py` 23/23 verdes | nada | 0 |
 | Lista de conversas (working memory, FTS, reflexão) | `glob("*.jsonl")` em `~/.claude/projects` | parcial | `build-working-memory.py:436`, `conversas_fts.py:380`, `reflection.sh:143` | `listar_sessoes()` em `thread_log.py` incluindo `CODEX_HOME/sessions/**/rollout-*.jsonl` | 0,25 |
@@ -142,14 +142,14 @@ levar dias.
 
 ## Riscos
 
-1. **A confiança dos hooks do Codex.** Hook sem confiança não roda, e isso é uma proteção que o
-   Central Agêntica MPV tem de manter. A única saída aceita é dar confiança explícita só aos hooks que o próprio
+1. **A confiança dos hooks do Codex.** Hook sem confiança não roda, e isso é uma proteção que a
+   Central Agêntica MPV tem de manter. A única saída aceita é dar confiança explícita só aos hooks que o própria
    Central Agêntica MPV distribui e revisa: gravar o hash de cada um no `config.toml` do `CODEX_HOME` do agente
    na instalação e na atualização. **`--dangerously-bypass-hook-trust` não pode ser usado**, nem no
    container: com ele, um `.codex/hooks.json` que chegue num repositório clonado ou numa pasta de
    terceiro roda comandos sozinho no começo da sessão, sem o modelo precisar aceitar nada, e leva as
    credenciais e os arquivos do container. Hooks de projetos externos continuam bloqueados. No
-   **Admin, que roda como root**, vale o mesmo, e o arquivo de hooks do Central Agêntica MPV tem de ser de root e
+   **Admin, que roda como root**, vale o mesmo, e o arquivo de hooks da Central Agêntica MPV tem de ser de root e
    ficar fora de qualquer pasta em que um agente escreva. A Fase 1 só fecha com um teste que põe um
    hook externo malicioso num projeto e confere que ele **não** roda.
 2. **O Codex muda toda semana.** Hooks, skills e app-server são recentes, e o protocolo do

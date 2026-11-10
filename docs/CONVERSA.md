@@ -1,6 +1,6 @@
-# Conversa no Central Agêntica MPV v1
+# Conversa na Central Agêntica MPV v1
 
-O chat do navegador é o ponto de entrada do Central Agêntica MPV. Depois de entrar com usuário e senha,
+O chat do navegador é o ponto de entrada da Central Agêntica MPV. Depois de entrar com usuário e senha,
 o dono abre a conversa do Admin em `/a/admin` ou escolhe um agente no menu à esquerda.
 
 ## Como uma mensagem chega

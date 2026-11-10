@@ -39,7 +39,7 @@ As travas do Claude de socorro, e o motivo de cada uma:
 
 | Opção | Por quê |
 | --- | --- |
-| `--safe-mode` | Desliga CLAUDE.md, hooks, plugins e MCP. Sem isso ele leria o CLAUDE.md do agente e viraria o agente, e os hooks do Central Agêntica MPV gravariam a conversa de socorro no fio do agente. |
+| `--safe-mode` | Desliga CLAUDE.md, hooks, plugins e MCP. Sem isso ele leria o CLAUDE.md do agente e viraria o agente, e os hooks da Central Agêntica MPV gravariam a conversa de socorro no fio do agente. |
 | `cwd = <ws>/.ybcentral/socorro/sala` | O Claude guarda o transcript numa pasta derivada do cwd. Na casa do agente ele se misturaria aos transcripts que o watchdog, o injetor e o contador de custo leem. A casa entra por `--add-dir` e pelo prompt. |
 | `--tools Read,Grep,Glob,Bash` + `--allowedTools` iguais | Só essas quatro ferramentas, liberadas sem pergunta. |
 | `--permission-prompts none` | Não há terminal para alguém responder pedido de permissão: o que pediria, é negado. Só vai quando o CLI da máquina conhece a flag (o painel pergunta ao `claude --help` uma vez): o 2.1.247 da jaula não conhece, e flag desconhecida faz o claude sair na hora. Sem ela o efeito é o mesmo, porque no `-p` o pedido de permissão já é negado. |

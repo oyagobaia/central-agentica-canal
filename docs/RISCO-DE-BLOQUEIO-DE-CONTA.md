@@ -1,18 +1,18 @@
-# Risco de bloqueio de conta: o Central Agêntica MPV pode fazer a Anthropic ou a OpenAI bloquear a sua conta?
+# Risco de bloqueio de conta: a Central Agêntica MPV pode fazer a Anthropic ou a OpenAI bloquear a sua conta?
 
 Pesquisa feita em 12/10/2026, com as fontes oficiais lidas nessa data. Termos de uso mudam:
-releia as duas páginas da seção "Fontes" antes de mudar o jeito como o Central Agêntica MPV autentica.
+releia as duas páginas da seção "Fontes" antes de mudar o jeito como a Central Agêntica MPV autentica.
 
 ## A resposta curta
 
-Do jeito que o Central Agêntica MPV roda, **não há regra da Anthropic nem da OpenAI que proíba**, e não
-encontramos nenhum relato confiável de conta bloqueada por isso. O Central Agêntica MPV usa o programa oficial
+Do jeito que a Central Agêntica MPV roda, **não há regra da Anthropic nem da OpenAI que proíba**, e não
+encontramos nenhum relato confiável de conta bloqueada por isso. A Central Agêntica MPV usa o programa oficial
 (Claude Code ou Codex), sem modificação, logado na conta da própria pessoa, numa máquina dela. O
 que ele faz é digitar no terminal desse programa, como a pessoa digitaria.
 
 As contas bloqueadas que viraram notícia em 2026 caíram por outra coisa: ferramentas que
 **tiravam o login da assinatura de dentro do Claude Code** e o usavam num programa delas
-(OpenCode, OpenClaw, Cline, Roo). O Central Agêntica MPV nunca faz isso.
+(OpenCode, OpenClaw, Cline, Roo). A Central Agêntica MPV nunca faz isso.
 
 O risco que sobra é de **volume**, não de regra: muitas sessões em paralelo, 24 horas por dia,
 batem no limite do plano mais cedo e se afastam do "uso comum, individual" que a Anthropic diz
@@ -69,24 +69,24 @@ rodando sem tela: a mesma página ensina a fazer login numa máquina remota.
 | Compartilhar a mesma conta entre pessoas, ou revender acesso | Proibido | Termos de consumidor da Anthropic: não compartilhar login nem credencial |
 | Modificar o binário do Claude Code | Proibido | Fonte 1 |
 
-## O que o Central Agêntica MPV faz para ficar do lado seguro
+## O que a Central Agêntica MPV faz para ficar do lado seguro
 
-Estas regras valem para o código e para a documentação do Central Agêntica MPV. Quem mudar alguma delas
+Estas regras valem para o código e para a documentação da Central Agêntica MPV. Quem mudar alguma delas
 precisa reler as fontes antes.
 
 1. **Roda sempre o programa oficial, sem modificação.** Nada de remendo no binário, nada de
    cliente próprio falando direto com a API usando o login da assinatura.
 2. **O login acontece pelo fluxo da própria Anthropic ou da OpenAI**, com a pessoa na frente
-   (o `/login` do Claude Code, o `codex login`). O Central Agêntica MPV nunca lê, copia, guarda ou transporta o
+   (o `/login` do Claude Code, o `codex login`). A Central Agêntica MPV nunca lê, copia, guarda ou transporta o
    arquivo de login de um agente para outro, nem para o cofre.
-3. **Cada pessoa usa a própria conta.** O aluno instala o Central Agêntica MPV na VPS dele e faz login na
-   assinatura dele. O Central Agêntica MPV não oferece "use a minha conta" para terceiros.
+3. **Cada pessoa usa a própria conta.** O aluno instala a Central Agêntica MPV na VPS dele e faz login na
+   assinatura dele. A Central Agêntica MPV não oferece "use a minha conta" para terceiros.
 4. **Agente que atende outra pessoa usa a credencial dessa pessoa**: a assinatura dela ou uma
    chave de API dela, guardada no cofre do agente. Isso já é regra do cofre (a chave é do dono do
    agente, e a fatura é dele).
 5. **Para trabalho contínuo e pesado, a recomendação é chave de API.** O seletor de modelo do
    painel deixa trocar "na assinatura" por "na API" sem reinstalar nada.
-6. **Poucas sessões simultâneas na assinatura.** O padrão do Central Agêntica MPV é um agente principal e as
+6. **Poucas sessões simultâneas na assinatura.** O padrão da Central Agêntica MPV é um agente principal e as
    sessões extras sob demanda. Quem quiser dez sessões trabalhando o dia inteiro deve usar chave de
    API nessas sessões.
 
@@ -106,9 +106,9 @@ assim:
 
 O risco é seu e é temporário. Não serve como modelo de operação permanente.
 
-## Como o Central Agêntica MPV digita no terminal, e por que isso não é o problema
+## Como a Central Agêntica MPV digita no terminal, e por que isso não é o problema
 
-O Central Agêntica MPV mantém o Claude Code (ou o Codex) aberto num terminal e escreve nele o que chega pelo
+A Central Agêntica MPV mantém o Claude Code (ou o Codex) aberto num terminal e escreve nele o que chega pelo
 chat, pelo Telegram ou pelo WhatsApp. Para o programa, é idêntico a alguém digitando. Não há
 chamada à API por fora, não há login reaproveitado, não há mudança no programa. A própria
 Anthropic documenta o modo programático (`claude -p`) e o Agent SDK, o que mostra que usar o

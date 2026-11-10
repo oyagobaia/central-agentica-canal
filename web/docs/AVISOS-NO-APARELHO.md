@@ -1,13 +1,13 @@
 # Avisos no aparelho (web push)
 
-O Central Agêntica MPV Web manda avisos para o celular e o computador do dono mesmo com a tela
+A Central Agêntica MPV Web manda avisos para o celular e o computador do dono mesmo com a tela
 fechada. É o Web Push padrão (VAPID + `aes128gcm`, RFC 8291 e 8292), feito só com
 `node:crypto`, sem biblioteca nova. Quem usa hoje: os [lembretes](LEMBRETES.md), a Mesa, o Foco e o
 [vigia de atenção dos agentes](ESTADO-DOS-AGENTES.md) ("Fulano precisa de você" e "Fulano terminou"). Qualquer
 frente pode usar (veja "Para quem constrói uma frente nova").
 
 - **Android e computador:** funciona no navegador (Chrome, Edge, Firefox) depois de ativar.
-- **iPhone:** só com o Central Agêntica MPV **instalado na tela de início** (iOS 16.4 ou mais novo). No
+- **iPhone:** só com a Central Agêntica MPV **instalado na tela de início** (iOS 16.4 ou mais novo). No
   Safari aberto como site, o botão explica isso em vez de falhar calado.
 - A inscrição só nasce de um toque do dono: é o botão **Ativar avisos neste aparelho**, no
   menu lateral e na tela de lembretes. Cada aparelho ativa uma vez.

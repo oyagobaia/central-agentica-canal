@@ -1,6 +1,6 @@
-# Provedores: Claude e Codex no Central Agêntica MPV
+# Provedores: Claude e Codex na Central Agêntica MPV
 
-Esta página explica quais motores o Central Agêntica MPV sabe usar, como cada um é pago e o que
+Esta página explica quais motores a Central Agêntica MPV sabe usar, como cada um é pago e o que
 mudou de verdade quando o motor é o Codex. A segunda metade guarda os testes que
 fizemos em 12/10/2026, com o comando exato, para ninguém precisar descobrir de novo.
 

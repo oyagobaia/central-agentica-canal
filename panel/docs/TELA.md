@@ -26,7 +26,7 @@ navegador do dono ──> painel (/tela/novnc/*  e  WebSocket /tela/websockify)
 
 ## Rotas
 
-Todas atrás do mesmo login das outras rotas (cookie de sessão, ou o segredo do proxy do Central Agêntica MPV Web). Chave de API (`Bearer`) **lê** o status, mas **não** abre a tela nem troca a senha.
+Todas atrás do mesmo login das outras rotas (cookie de sessão, ou o segredo do proxy da Central Agêntica MPV Web). Chave de API (`Bearer`) **lê** o status, mas **não** abre a tela nem troca a senha.
 
 ### `GET /api/tela`
 
@@ -52,7 +52,7 @@ Corpo `{ "senha": "abc123" }`. De 6 a 8 caracteres ASCII imprimíveis. Mais de 8
 
 ### `GET /tela/novnc/*` e `WS /tela/websockify`
 
-O cliente noVNC e o WebSocket. A página da aba monta a URL do noVNC a partir de `location.pathname`, por isso funciona na raiz, com `YBCENTRAL_PANEL_BASE` e atrás do `/p/<agente>/` do Central Agêntica MPV Web. O pedido de WebSocket com cookie precisa de `Origin` da mesma origem. Recusas saem com status e motivo em português: 401 (sem login), 403 (outro site), 404 (outro caminho), 502 (a tela não respondeu), 503 (`YBCENTRAL_TELA_NOVNC` inválida).
+O cliente noVNC e o WebSocket. A página da aba monta a URL do noVNC a partir de `location.pathname`, por isso funciona na raiz, com `YBCENTRAL_PANEL_BASE` e atrás do `/p/<agente>/` da Central Agêntica MPV Web. O pedido de WebSocket com cookie precisa de `Origin` da mesma origem. Recusas saem com status e motivo em português: 401 (sem login), 403 (outro site), 404 (outro caminho), 502 (a tela não respondeu), 503 (`YBCENTRAL_TELA_NOVNC` inválida).
 
 ## Gravar a senha pela máquina
 

@@ -1,4 +1,4 @@
-# Backup e restauração do Central Agêntica MPV
+# Backup e restauração da Central Agêntica MPV
 
 Este documento é o roteiro que o Admin segue quando o dono pede "faz um backup" ou "volta ao que era
 ontem". O dono não é programador: ele vê só o chat. Os comandos rodam como root, no terminal do servidor.
@@ -27,7 +27,7 @@ antes de seguir: se algum não abrir, o comando para e diz o motivo.
 | `dados.tar.gz` | `/var/lib/ybcentral`: as casas dos agentes (memória, conversas, uploads, rotinas), os cofres e os dados do painel |
 | `admin.tar.gz` | `/opt/ybcentral/admin`: `CLAUDE.md`, `AGENTS.md`, uploads e skills do Admin |
 | `transcricoes-admin.tar.gz` | a conversa do próprio Admin |
-| `extras.tar.gz` | só existe se uma edição que estende o Central Agêntica MPV pedir caminhos a mais (ver "Para quem estende") |
+| `extras.tar.gz` | só existe se uma edição que estende a Central Agêntica MPV pedir caminhos a mais (ver "Para quem estende") |
 | `MANIFESTO.txt` | quando foi feito, o motivo, a **versão e o commit instalados**, os agentes, se as casas entraram e o sha256 dos arquivos de configuração |
 
 Com `--sem-casas`, `dados.tar.gz` leva tudo de `/var/lib/ybcentral` **menos** `agentes/*/home` (a memória e as
@@ -35,7 +35,7 @@ conversas dos agentes). Os cofres entram do mesmo jeito.
 
 ### O que não entra
 
-- O código do Central Agêntica MPV (`/opt/ybcentral/app`) e o clone: vêm do GitHub e o instalador regrava.
+- O código da Central Agêntica MPV (`/opt/ybcentral/app`) e o clone: vêm do GitHub e o instalador regrava.
 - A imagem dos agentes e os containers: o `ybcentral imagem construir` e o `ybcentral agente recriar` refazem.
 - Programas que alguém instalou dentro do container, fora da casa do agente.
 
@@ -118,13 +118,13 @@ e rode `sudo ybcentral restaurar` apontando para ela.
 
 ## Regras que valem sempre
 
-- **Nenhum comando do Central Agêntica MPV apaga backup.** Só o dono pede para apagar um, e o Admin nunca apaga o mais
+- **Nenhum comando da Central Agêntica MPV apaga backup.** Só o dono pede para apagar um, e o Admin nunca apaga o mais
   recente nem um `antes-de-restaurar` ou `antes-de-voltar`.
 - Se o disco encher, o `tar` falha e o comando diz isso sem seguir. Libere espaço (`du -sh /var/backups/ybcentral/*`,
   `podman image prune`) e rode de novo.
 - Backup tem segredos. Nunca cole o conteúdo de `config.tar.gz` ou `cofre.env` no chat.
 
-## Para quem estende o Central Agêntica MPV
+## Para quem estende a Central Agêntica MPV
 
 O `lib/backup.sh` tem quatro funções pequenas, com um padrão que não faz nada. Uma edição que estende o Central
 Agêntica MPV (a enterprise, por exemplo) carrega o arquivo e **redefine** as que precisar:

@@ -1,4 +1,4 @@
-# QA de navegação do Central Agêntica MPV
+# QA de navegação da Central Agêntica MPV
 
 Este roteiro existe porque o QA antigo abria cada URL direto e olhava só o computador. O dono
 percebe o problema de outro jeito: ele **clica no menu da esquerda** e vê a tela inteira mudar
@@ -15,7 +15,7 @@ percebe o problema de outro jeito: ele **clica no menu da esquerda** e vê a tel
 node qa/roteiro-navegacao.mjs
 ```
 
-O `qa/montar-ambiente.mjs` liga o Central Agêntica MPV Web (`web/server.js`) e o painel de um agente falso
+O `qa/montar-ambiente.mjs` liga a Central Agêntica MPV Web (`web/server.js`) e o painel de um agente falso
 (`panel/server.js`, sob `/p/tina`) do mesmo jeito que a produção liga os dois: `agentes.json` com o
 Admin e o agente "tina" (foto, cor, `porta_painel`, `proxy_segredo_arquivo`), `web.env` com usuário e
 hash scrypt, runner falso e um histórico de 40 trocas de mensagem. Nada toca `/etc`, `/var` nem

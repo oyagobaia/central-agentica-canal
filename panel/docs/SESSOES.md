@@ -3,7 +3,7 @@
 A aba Sessões mostra as sessões de trabalho do agente como cards: o que cada uma faz agora,
 a conversa dela, e os botões para aprovar ou negar um pedido, mandar recado, anexar arquivo,
 arquivar, retomar, renomear, dar estrela, fazer handoff e criar um card novo. É o mini-Bunker
-do Central Agêntica MPV.
+da Central Agêntica MPV.
 
 Tudo o que se faz clicando na tela se faz também por API, com a mesma rota. Este documento
 serve para a pessoa e para o agente que vai operar a aba (também em `GET /api/sessoes/docs.md`).

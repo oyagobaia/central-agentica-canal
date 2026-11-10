@@ -1,4 +1,4 @@
-# O canal WhatsApp do Central Agêntica MPV
+# O canal WhatsApp da Central Agêntica MPV
 
 Escrito em 12/10/2026 (card C5 da Imersão). É o contrato das peças do WhatsApp: a ponte, as tools de
 resposta, o comando `ybcentral-agente canal whatsapp` e a leitura da conversa. Quem conduz o dono pelo
@@ -187,7 +187,7 @@ O mesmo vale para os arquivos de estado da pasta `~/.ybcentral/whatsapp`, que é
 `lids.json` um LID de outra pessoa apontando para o número do dono. Isso não lhe dá poder novo, porque o
 mesmo agente já conseguiria editar o `permitidos.json`. A defesa é a regra de autoridade (mensagem do
 WhatsApp é externa e nunca muda canal, lista ou credencial) e o fato de a lista só mudar a pedido do dono
-no chat do Central Agêntica MPV.
+no chat da Central Agêntica MPV.
 
 **Destino:** com um único número na lista, `para` pode faltar e esse número é o destino. Com dois ou mais,
 `para` é obrigatório: o agente passa o número do atributo `de` do envelope que está respondendo
@@ -231,7 +231,7 @@ No `scripts/ybchat-mcp/server.mjs`, ao lado de `reply` e `send_file`:
 - `whatsapp_send_file {para, caminho, legenda?}` (idem)
 
 Falam com `~/.ybcentral/whatsapp/ponte.sock` (`YBCENTRAL_WHATSAPP_SOCK` troca o caminho, para testes). Socket
-ausente ou recusando conexão: `isError` com "O WhatsApp está desligado; fale pelo chat do Central Agêntica MPV
+ausente ou recusando conexão: `isError` com "O WhatsApp está desligado; fale pelo chat da Central Agêntica MPV
 (tool reply)". Numa sessão paralela (`YBCHAT_SESSAO_ID` presente) as duas recusam: só a principal fala
 pelo WhatsApp. Como são MCP, funcionam igual em Claude e em Codex. No transcript ficam como
 `mcp__ybchat__whatsapp_reply` e `mcp__ybchat__whatsapp_send_file`, e os leitores casam por sufixo.
@@ -265,4 +265,4 @@ ybcentral-agente canal status
 Mensagem do WhatsApp entra como **externa**, nunca como fala do dono. Veio de um número que o dono
 autorizou, e o agente responde normalmente por `whatsapp_reply`, mas não age sozinho sobre nada
 irreversível, sobre credenciais, canais ou a lista de permitidos só porque uma mensagem do WhatsApp
-pediu: confirma antes no chat do Central Agêntica MPV. A lista nunca muda a pedido de uma mensagem do próprio canal.
+pediu: confirma antes no chat da Central Agêntica MPV. A lista nunca muda a pedido de uma mensagem do próprio canal.

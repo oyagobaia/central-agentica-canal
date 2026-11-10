@@ -1,14 +1,14 @@
 # Lembretes que insistem até você confirmar
 
 O agente agenda um lembrete para o dono ("me lembra amanhã às 9h de ligar pro contador").
-Na hora marcada o Central Agêntica MPV avisa e **repete o aviso em intervalos** até o dono tocar
-**Feito** ou **Adiar**. Quem dispara é o Central Agêntica MPV Web, que é um serviço do servidor e volta
+Na hora marcada a Central Agêntica MPV avisa e **repete o aviso em intervalos** até o dono tocar
+**Feito** ou **Adiar**. Quem dispara é a Central Agêntica MPV Web, que é um serviço do servidor e volta
 sozinho depois de um reinício. Nada depende da sessão do agente estar aberta, nem do
 Bunker, nem de serviço externo.
 
 Cada vez que o lembrete toca, o aviso sai por três caminhos ao mesmo tempo:
 
-1. **Na tela do Central Agêntica MPV**: uma faixa ⏰ no alto de qualquer conversa, com os botões
+1. **Na tela da Central Agêntica MPV**: uma faixa ⏰ no alto de qualquer conversa, com os botões
    **Feito** e **Adiar**. Some quando alguém confirma, em qualquer aparelho.
 2. **No celular e no computador**, mesmo com a tela fechada, nos aparelhos em que o dono
    ativou os [avisos no aparelho](AVISOS-NO-APARELHO.md). O aviso traz os mesmos dois botões.
@@ -245,7 +245,7 @@ envio registra o erro e a faixa e o aviso no aparelho seguem normalmente.
 - **Tela Lembretes** (`/lembretes`, no menu lateral): a lista com a regra em português, a
   próxima vez, pausar, retomar, apagar, criar um novo e o histórico das ocorrências. É ali que
   fica o botão **Ativar avisos neste aparelho** e o **Mandar aviso de teste**.
-- As duas têm o botão **Tutorial** (visita guiada) e o `?` por seção, explicando o que é, como o
+- As duas têm o botão **Tutorial** (visita guiada) e o `?` por seção, explicando o que é, como a
   Central Agêntica MPV calcula e por que está ali.
 
 ## Onde fica cada coisa

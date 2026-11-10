@@ -24,7 +24,7 @@ Só um cartão fica no meio do login por vez. Os outros botões de gerar ficam d
 
 ## Os rótulos dos cartões
 
-Cada cartão mostra um rótulo, com o nome do agente ao lado: **Agente admin** ("Para administrar: atualizar o Central Agêntica MPV,
+Cada cartão mostra um rótulo, com o nome do agente ao lado: **Agente admin** ("Para administrar: atualizar a Central Agêntica MPV,
 criar agentes e configurar."), **Agente principal** (o primeiro agente de trabalho: "O seu agente do dia a dia: é com ele
 que você conversa e pede tarefas.") e **Agente de trabalho** para os demais. Ao concluir, o cartão diz "Seu agente Central Agêntica MPV
 já está conectado."
@@ -82,7 +82,7 @@ link de login**, e o resto do fluxo (abrir ou copiar o link, colar o código, se
 
 ## Outras IAs no futuro
 
-A lista das IAs que o Central Agêntica MPV conhece fica num lugar só, `web/public/provedores.js` (o navegador e o servidor usam o mesmo
+A lista das IAs que a Central Agêntica MPV conhece fica num lugar só, `web/public/provedores.js` (o navegador e o servidor usam o mesmo
 arquivo): hoje Claude e Codex, cada uma com `ativo`. Cada cartão mostra "Com qual IA este agente vai entrar?" e o nome da IA
 do agente. Como só há uma opção compatível por agente, não há seletor; a função `provedoresDoAgente` em `conectar-puro.js`
 devolve só as IAs ativas e compatíveis, e o cartão vira seletor quando ela devolver mais de uma. O `POST` que gera o link manda

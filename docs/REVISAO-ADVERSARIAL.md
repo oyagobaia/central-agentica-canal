@@ -1,6 +1,6 @@
 # Revisão adversarial de segurança
 
-O Central Agêntica MPV roda na VPS de gente que não é programadora, com um Admin que tem acesso de root e agentes
+A Central Agêntica MPV roda na VPS de gente que não é programadora, com um Admin que tem acesso de root e agentes
 que conversam com o mundo. Uma falha aqui expõe o servidor, as chaves e as conversas de quem confiou
 no projeto. Por isso nenhuma mudança entra na `main` sem passar por três etapas: feita, testada e
 revisada por um revisor que procura ativamente como quebrá-la.
