@@ -1,0 +1,111 @@
+# Botão de emergência (tirar o servidor do ar)
+
+Quando uma falha crítica está sendo explorada e a correção ainda não pode ser aplicada, o botão de emergência
+tira o servidor da internet. O painel, os sites e tudo o que é público saem do ar. **O seu acesso de administração
+pelo Tailscale continua entrando.** Se ninguém confirmar em 5 minutos, o servidor religa sozinho.
+
+Tela: menu **Segurança**, bloco "Botão de emergência". Terminal: `sudo ybcentral emergencia ...`. Rotas para agentes:
+`GET /api/v1/seguranca/ronda/docs.md`.
+
+## O que ele faz, na ordem
+
+1. **Confere se não vai te trancar para fora.** Só corta com o `nft` instalado e com um caminho de acesso garantido:
+   o Tailscale logado (interface `tailscale0` de pé) ou ao menos um IP em `IPS_ADMIN`. Sem isso, o botão fica
+   desligado e a tela diz o motivo.
+2. **Guarda o estado de antes** (`nft list ruleset`, para diagnóstico, e os serviços ativos) em `/var/lib/ybcentral/emergencia/antes/`.
+3. **Agenda o religar automático** (`systemd-run`, 5 minutos) antes de mudar qualquer coisa. Se o agendamento
+   falha, nada é cortado.
+4. **Para o proxy público** (`caddy`, e o `cloudflared` se existir) e carrega a tabela nft própria
+   `inet ybcentral_emergencia`, com chains nos hooks `input`, `output` e `forward` em prioridade -10, ou seja, antes das
+   regras do ufw (que não são mexidas). Ela derruba tudo na entrada, **inclusive as conexões que já estavam abertas**,
+   e deixa passar só: o loopback, a interface do Tailscale, os `IPS_ADMIN` (por SSH, IPv4 e IPv6) e a rede dos
+   agentes (`10.89.0.0/16`, para eles continuarem falando com o painel por dentro). Na saída, tudo segue normal;
+   com `--isolar-saida` sobram só o DNS, o admin e a rede dos agentes, e o tráfego dos containers para a internet
+   (`forward`) também é bloqueado. O IPv6 mantém a descoberta de vizinhos (NDP), senão o endereço de administração
+   some da rede. Com `--isolar-saida`, a resposta de DNS (conexão estabelecida na porta 53) também passa.
+5. **Você confirma** do seu aparelho (`sudo ybcentral emergencia confirmar`) e o religar automático é cancelado.
+   O corte fica até você religar.
+
+**O painel também sai do ar**, porque ele é servido pelo mesmo proxy. Por isso a confirmação e o religar são feitos
+pelo servidor (SSH pelo Tailscale). A tela avisa isso antes de cortar.
+
+## Duas confirmações
+
+`preparar` gera um **código de uso único** (6 caracteres, vale 2 minutos, guardado só como hash em
+`/var/lib/ybcentral/seguranca/emergencia-codigo`, permissão 600; 3 erros e ele é descartado) e mostra o plano.
+`cortar` e `religar` exigem esse código. Na tela, além do código, você digita `TIRAR-DO-AR` (ou `RELIGAR`).
+
+```
+sudo ybcentral emergencia simular                 # só mostra o plano, não muda nada
+sudo ybcentral emergencia preparar                # gera o código e mostra o plano
+sudo ybcentral emergencia cortar --codigo K7M2PQ  # tira do ar (--isolar-saida também bloqueia a saída)
+sudo ybcentral emergencia confirmar               # cancela o religar automático
+sudo ybcentral emergencia preparar                # (de novo) código para religar
+sudo ybcentral emergencia religar --codigo X4TN8B # volta ao normal e testa que tudo voltou
+sudo ybcentral emergencia estado                  # cortado ou normal, e o que está parado
+```
+
+O religar apaga a tabela inteira (`nft delete table inet ybcentral_emergencia`, identidade fixa, sem número de regra),
+religa os serviços e confere que o painel responde (`https://<seu domínio>/`). Se algo não voltar, o relatório diz o quê e o comando para ver o motivo.
+
+## Uma operação de cada vez
+
+`preparar`, `cortar`, `confirmar` e `religar` rodam sob uma trava (`flock -w 30` em
+`/var/lib/ybcentral/emergencia/.trava`) e conferem o estado de novo depois de pegá-la. Se o religar manual e o
+automático coincidirem, o que chegou depois espera, vê que já está religado, registra isso no log e sai com 0:
+a tabela é apagada uma única vez.
+
+## Reinício do servidor: o corte NÃO sobrevive
+
+**O corte de emergência vale até o próximo reinício do servidor.** Ele vive na memória (a tabela nft e os serviços
+parados) e, por desenho, não existe nenhuma unidade de boot que o recarregue. Depois de reiniciar, a tabela some, os
+serviços públicos habilitados sobem sozinhos e o servidor volta a ficar exposto, mesmo com o marcador de corte ainda no disco.
+
+O que o sistema faz com isso:
+
+- O `estado` confere o firewall efetivo: marcador `cortado` sem a tabela nft carregada aparece como **INCONSISTENTE**
+  (`"inconsistente": true` e `"motivo_inconsistente"` no `--json`). O painel mostra isso em vermelho, como "Falha de proteção".
+- A ronda e o vigia avisam o Admin com um recado de texto fixo: "o corte de emergência não está mais valendo,
+  provavelmente depois de um reinício; reaplique com sudo ybcentral emergencia preparar e cortar, ou religue".
+
+**O que fazer depois de reiniciar:**
+
+1. Se ainda quer o servidor fora do ar: `sudo ybcentral emergencia preparar` e depois `sudo ybcentral emergencia cortar --codigo <código>`.
+   O `cortar` é aceito no estado inconsistente, recarrega a tabela, para de novo os serviços públicos e **preserva** o
+   estado guardado de antes do corte (`antes/`) e a lista original de serviços parados, então o religar seguinte
+   ainda sabe o que religar. Depois rode `confirmar` de novo, porque a confirmação antiga é descartada.
+2. Se a situação já passou: `sudo ybcentral emergencia preparar` e `sudo ybcentral emergencia religar --codigo <código>`.
+
+Se o corte ainda não tinha sido confirmado, o timer transitório de religar automático também se perde no reinício; o
+estado fica inconsistente do mesmo jeito e vale o mesmo caminho.
+
+## Ver o arquivo nft antes de cortar
+
+`sudo ybcentral emergencia simular [--isolar-saida]` mostra o arquivo nft exato que seria carregado. O `cortar` grava
+esse arquivo em `/var/lib/ybcentral/emergencia/emergencia.nft` e o valida com `nft -c -f` **antes** de agendar o
+religar ou parar qualquer serviço: se o nft recusar, nada é mudado.
+
+## Configuração
+
+`/etc/ybcentral/emergencia.conf` (opcional; o arquivo é lido linha a linha, nunca executado). Padrões:
+
+```
+SERVICOS_PUBLICOS="caddy cloudflared"
+INTERFACES_ADMIN="tailscale0"
+IPS_ADMIN=""
+REDES_INTERNAS="10.89.0.0/16"
+PORTA_SSH=22
+PRAZO_CONFIRMAR_MIN=5
+URLS_TESTE_RELIGAR=""      # vazio = https://<YBCENTRAL_DOMINIO do ybcentral.env>/
+```
+
+## Para o painel
+
+Cada comando regrava `/var/lib/ybcentral/web/seguranca/emergencia.json` (estado, se está disponível e o motivo, e o
+plano), que a tela lê. O motor da ronda mantém esse arquivo fresco rodando `ybcentral emergencia estado` de tempos
+em tempos. Os cliques da tela viram pedidos que o root executa (`docs/interno/CONTRATO-RONDA.md`).
+
+## Testes
+
+`bash tests/emergencia/rodar.sh`: raiz falsa (`YBCENTRAL_RAIZ`) e comandos de mentira (nft, systemctl, tailscale)
+no PATH; não toca na máquina. O teste real do corte (conexão já aberta caindo, tráfego de container bloqueado em `--isolar-saida`) só em máquina descartável.
