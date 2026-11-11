@@ -3,8 +3,8 @@
   "produto": "Central Agêntica MPV",
   "_leia": "Canal público da Central Agêntica MPV: lista dos commits publicados do produto, lida pelo aviso de atualização de cada instalação. Não tem código.",
   "ultimo": {
-    "sha": "6bc2d34fd8fe0e00bb27d38bfc14d68e8405a9d0",
-    "data": "2026-11-10T20:59:44-03:00",
+    "sha": "d982e1122f270f65f2dee955a2ce676cd1072332",
+    "data": "2026-11-10T21:23:33-03:00",
     "versao": "1.0.0"
   },
   "commits": [
@@ -37,6 +37,11 @@
       "sha": "6bc2d34fd8fe0e00bb27d38bfc14d68e8405a9d0",
       "data": "2026-11-10T20:59:44-03:00",
       "mensagem": "Central Agêntica MPV: chave SSH de leitura por cliente (opção B) e artigo feminino no nome"
+    },
+    {
+      "sha": "d982e1122f270f65f2dee955a2ce676cd1072332",
+      "data": "2026-11-10T21:23:33-03:00",
+      "mensagem": "Central Agêntica MPV: concordância no feminino em todo o produto, licença proprietária no README e instalação pelo Claude Code com a chave de leitura"
     }
   ]
 }

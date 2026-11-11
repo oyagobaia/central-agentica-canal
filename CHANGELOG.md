@@ -1,6 +1,6 @@
 # Changelog
 
-Notas de versão do Central Agêntica MPV, de YB Treinamentos Ltda (MPV).
+Notas de versão da Central Agêntica MPV, de YB Treinamentos Ltda (MPV).
 
 Todas as mudanças importantes da Central Agêntica MPV ficam neste arquivo.
 
@@ -130,7 +130,7 @@ ela a Tela não conecta. Defina a senha uma vez, na aba Tela do painel desse age
 segunda trava, além do login do painel, e a Central Agêntica MPV não inventa uma por você porque ninguém saberia qual é. O resumo
 da atualização lista os agentes que ainda precisam disso. Servidor arm64 precisa reconstruir a imagem uma vez
 (o Admin faz isso na atualização).
-**Convidar um colaborador.** Agora você pode convidar uma pessoa para conversar com um dos seus agentes de trabalho, sem dar acesso ao resto da Central Agêntica MPV. No menu ☰ do agente há o item **Convidar colaborador** (ou a página `/colaboradores`): você informa o e-mail da pessoa, e ela recebe o link, o login e uma senha temporária que vale por 7 dias. No primeiro acesso ela cria a própria senha e passa a usar aquele agente: a conversa e a leitura das sessões, das rotinas, da memória e dos arquivos. Ela não grava memória, arquivos nem configuração pelo painel, e o login da conta de IA do agente também fica só com você. Ela não sai desse agente: o Admin, os outros agentes e as telas da caixa inteira (chaves de API do sistema, convidar colaborador, configurações globais) continuam só seus. Dentro do agente, o cofre, as chaves de API do painel, o login da conta de IA, as credenciais dos canais e a Tela também ficam com você. Você manda o convite de novo ou revoga o acesso quando quiser, e a lista guarda o histórico com as datas. As mensagens dele chegam ao agente marcadas como vindas de um colaborador. O envio do convite por e-mail é opcional: sem configurar nada, a tela mostra o texto pronto para você copiar e mandar por WhatsApp. Para a Central Agêntica MPV mandar o e-mail sozinho, veja as variáveis `YBCENTRAL_SMTP_*` em `web/docs/COLABORADORES.md`. Nada precisa ser feito para atualizar.
+**Convidar um colaborador.** Agora você pode convidar uma pessoa para conversar com um dos seus agentes de trabalho, sem dar acesso ao resto da Central Agêntica MPV. No menu ☰ do agente há o item **Convidar colaborador** (ou a página `/colaboradores`): você informa o e-mail da pessoa, e ela recebe o link, o login e uma senha temporária que vale por 7 dias. No primeiro acesso ela cria a própria senha e passa a usar aquele agente: a conversa e a leitura das sessões, das rotinas, da memória e dos arquivos. Ela não grava memória, arquivos nem configuração pelo painel, e o login da conta de IA do agente também fica só com você. Ela não sai desse agente: o Admin, os outros agentes e as telas da caixa inteira (chaves de API do sistema, convidar colaborador, configurações globais) continuam só seus. Dentro do agente, o cofre, as chaves de API do painel, o login da conta de IA, as credenciais dos canais e a Tela também ficam com você. Você manda o convite de novo ou revoga o acesso quando quiser, e a lista guarda o histórico com as datas. As mensagens dele chegam ao agente marcadas como vindas de um colaborador. O envio do convite por e-mail é opcional: sem configurar nada, a tela mostra o texto pronto para você copiar e mandar por WhatsApp. Para a Central Agêntica MPV mandar o e-mail sozinha, veja as variáveis `YBCENTRAL_SMTP_*` em `web/docs/COLABORADORES.md`. Nada precisa ser feito para atualizar.
 
 **Anexos na casa do agente.** Os arquivos enviados pela conversa agora são gravados pelo dono do agente, e não mais pelo root do servidor, para que uma pasta trocada por um atalho dentro da casa do agente não leve o arquivo para fora dela. Em instalações antigas, a pasta `uploads/` que o root tinha criado passa sozinha para o dono do agente no primeiro anexo; as pastas de dias antigos ficam como estão. Nada precisa ser feito para atualizar.
 
@@ -152,8 +152,8 @@ pop-up "Seu login do Claude expirou". A página Conectar conta continua no menu 
 mostrar com qual IA o agente vai entrar; por enquanto é a IA em que ele já foi criado, e trocar de IA ainda não está disponível.
 Nada precisa ser feito para atualizar.
 
-**Comando para entregar uma Central Agêntica MPV instalado por outra pessoa.** Quando a equipe instala a Central Agêntica MPV na VPS de alguém e
-quer entregar pronto, o comando `sudo ybcentral instalacao-remota` troca a senha do painel por uma senha forte nova, reinicia o
+**Comando para entregar uma Central Agêntica MPV instalada por outra pessoa.** Quando a equipe instala a Central Agêntica MPV na VPS de alguém e
+quer entregar pronta, o comando `sudo ybcentral instalacao-remota` troca a senha do painel por uma senha forte nova, reinicia o
 painel e mostra uma única vez a mensagem pronta com o endereço, o usuário e a senha. A senha não fica guardada em lugar
 nenhum, só o hash. É opcional e não muda a instalação normal. Nada precisa ser feito para atualizar.
 
@@ -207,7 +207,7 @@ telas até o assunto se resolver. O botão Atualizar leva ao chat do Admin com o
 Nada é instalado sem o seu sim, e ao atualizar o aviso some sozinho. Para desligar, ponha
 `YBCENTRAL_BOLETINS_SEGURANCA=0` no `ybcentral.env`. Detalhes em `docs/BOLETINS-DE-SEGURANCA.md`.
 
-**Ronda de segurança de fábrica.** Todo Central Agêntica MPV instalado passa a ter uma ronda que, três vezes ao dia (07:00,
+**Ronda de segurança de fábrica.** Toda Central Agêntica MPV instalada passa a ter uma ronda que, três vezes ao dia (07:00,
 13:00 e 19:00, no horário do servidor), procura falhas de segurança que afetam aquela instalação: os pacotes do
 servidor, o kernel que está rodando, o que escuta na rede, os pacotes da Central Agêntica MPV e os serviços que você conectou
 (Notion, Slack, Google Drive e outros). Quem não usa o Notion não recebe aviso sobre o Notion. As falhas aparecem
@@ -221,7 +221,7 @@ de processos que o sistema dá a cada serviço e a segunda aba abria em branco o
 biblioteca de imagens do Python que vem na imagem, subiu para a 13.0.0, que fecha cinco falhas críticas de
 segurança da versão anterior. As duas valem depois de atualizar, quando a imagem é reconstruída.
 
-Duas ideias trazidas do Orca (https://github.com/stablyai/orca, licença MIT; crédito no `NOTICE`): o
+Duas ideias trazidas do Orca (https://github.com/stablyai/orca, licença MIT; crédito no `THIRD-PARTY-NOTICES.md`): o
 medidor de uso da assinatura e o aviso de que um agente precisa de você.
 
 Agora dá para responder pelo chat a pergunta de escolha que o agente faz (aquela com opções para marcar): a
@@ -248,7 +248,7 @@ aprovar sem querer o comando que surgiu em seguida, e o botão Aprovar de uma te
    arquivo as duas linhas sobre "uso da assinatura" e "estado de cada agente", sem apagar o que você
    escreveu. Sem elas o Admin não sabe onde fica o medidor quando você perguntar.
 5. **Para receber os avisos no celular,** ative "Avisos neste aparelho" na tela de Lembretes, se
-   ainda não ativou. No iPhone, o aviso só chega com a Central Agêntica MPV instalado na tela de início. Se o app
+   ainda não ativou. No iPhone, o aviso só chega com a Central Agêntica MPV instalada na tela de início. Se o app
    instalado abrir com aviso de erro, feche e abra de novo para ele buscar os arquivos novos.
 6. **Para ter a ronda de segurança, clique em Instalar na faixa de nova versão do painel ou peça ao Admin:
    "atualiza a Central Agêntica MPV".** Depois de atualizar, a ronda faz a primeira rodada sozinha e passa a varrer o
@@ -401,12 +401,12 @@ sobrevivem à atualização.
 
 ### Como atualizar
 
-Para quem já tem a Central Agêntica MPV instalado, na ordem:
+Para quem já tem a Central Agêntica MPV instalada, na ordem:
 
 1. **Peça ao Admin, no chat: "atualiza a Central Agêntica MPV".** Ele faz a simulação, conta em palavras simples o
    que muda e só instala depois do seu ok. Pelo terminal, o caminho é `sudo ybcentral atualizar --simular`
-   e, depois de ler o relatório, `sudo ybcentral atualizar --ok-do-dono --segundo-plano`. Se o sua Central Agêntica MPV é
-   anterior a esta versão (instalado até 19/10/2026), o comando que você tem ainda não conhece o
+   e, depois de ler o relatório, `sudo ybcentral atualizar --ok-do-dono --segundo-plano`. Se a sua Central Agêntica MPV é
+   anterior a esta versão (instalada até 19/10/2026), o comando que você tem ainda não conhece o
    `--ok-do-dono`: rode só `sudo ybcentral atualizar --segundo-plano`. A partir desta versão, toda
    atualização passa pelo seu ok.
 2. **Reinicie os agentes.** O aviso de login expirado depende de uma mudança no runner (o processo que
@@ -416,7 +416,7 @@ Para quem já tem a Central Agêntica MPV instalado, na ordem:
    continua de onde estava.
 3. **Regrave a identidade dos agentes que você já tem.** Nesta versão eles aprendem a lidar com a
    mensagem falada que chega marcada como `[áudio transcrito]` (ela pode ter erro de transcrição). A
-   instrução fica na parte que o própria Central Agêntica MPV mantém, e a atualização não regrava essa parte sozinha.
+   instrução fica na parte que a própria Central Agêntica MPV mantém, e a atualização não regrava essa parte sozinha.
    Rode `sudo ybcentral agente identidade <agente>` para cada um. O comando não mexe no `CLAUDE.md`, no
    `AGENT.md` nem na memória que você personalizou; só refaz o texto de plataforma. Agentes criados
    depois desta versão já nascem com a instrução, e o Admin recebe a dele na reinstalação.
@@ -465,8 +465,8 @@ Para quem já tem a Central Agêntica MPV instalado, na ordem:
   agente. A conversa em que você está nunca mostra bolinha, e ela só conta como lida quando você chega ao fim dela. Quem guarda o que já foi lido é o servidor, então o
   celular e o computador concordam. Ao atualizar, ninguém aparece com tudo aceso: cada agente começa zerado. Também
   existe como rota de API (`GET /api/v1/nao-lidas` e `POST /api/v1/agents/<agente>/lido`).
-- **Mudança muito importante para quem personaliza a Central Agêntica MPV.** O sua Central Agêntica MPV vai ser personalizado por
-  você e continuar sendo atualizado pela equipe do Central Agêntica MPV. Para manter a estabilidade e preservar as suas
+- **Mudança muito importante para quem personaliza a Central Agêntica MPV.** A sua Central Agêntica MPV vai ser personalizada por
+  você e continuar sendo atualizada pela equipe da Central Agêntica MPV. Para manter a estabilidade e preservar as suas
   alterações, daqui para frente toda personalização do programa (um botão novo, uma cor, um comportamento
   diferente) segue duas regras: o Admin lê antes o guia `docs/PERSONALIZAR.md`, que mostra a arquitetura
   em uma página e onde a mudança deve entrar, e anota cada personalização no registro
@@ -560,7 +560,7 @@ Para quem já tem a Central Agêntica MPV instalado, na ordem:
 - Modo monitor de cards: `ybcentral-card abrir --monitor` abre um card vigiado pelo `ybcentral-monitor`, um vigia
   sem modelo que confere o card de tempos em tempos e só chama o agente quando o critério de entregue aparece
   ou quando algo trava. Guia em `docs/MODO-MONITOR.md`.
-- Aviso de novidades depois de atualizar: na primeira conversa depois que a Central Agêntica MPV é atualizado, o agente (e
+- Aviso de novidades depois de atualizar: na primeira conversa depois que a Central Agêntica MPV é atualizada, o agente (e
   o Admin) conta ao dono, em poucas linhas, o que veio de novo e dá para usar. Cada agente avisa uma vez só,
   e agente criado depois da atualização não recebe aviso do que já nasceu com ele. Guia em `docs/NOVIDADES.md`.
 - Aviso de versão nova: quando sai uma atualização da Central Agêntica MPV no GitHub oficial, o painel mostra uma faixa

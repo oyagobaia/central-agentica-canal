@@ -7,7 +7,7 @@ fechada. É o Web Push padrão (VAPID + `aes128gcm`, RFC 8291 e 8292), feito só
 frente pode usar (veja "Para quem constrói uma frente nova").
 
 - **Android e computador:** funciona no navegador (Chrome, Edge, Firefox) depois de ativar.
-- **iPhone:** só com a Central Agêntica MPV **instalado na tela de início** (iOS 16.4 ou mais novo). No
+- **iPhone:** só com a Central Agêntica MPV **instalada na tela de início** (iOS 16.4 ou mais novo). No
   Safari aberto como site, o botão explica isso em vez de falhar calado.
 - A inscrição só nasce de um toque do dono: é o botão **Ativar avisos neste aparelho**, no
   menu lateral e na tela de lembretes. Cada aparelho ativa uma vez.

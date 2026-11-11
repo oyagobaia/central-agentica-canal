@@ -1,7 +1,7 @@
 # Boletins de segurança da Central Agêntica MPV
 
 Quando é descoberta uma falha de segurança numa das ferramentas que a Central Agêntica MPV usa, a equipe publica um
-**boletim** no repositório oficial. A Central Agêntica MPV instalado percebe sozinho e avisa o dono: o aviso único
+**boletim** no repositório oficial. A Central Agêntica MPV instalada percebe sozinha e avisa o dono: o aviso único
 "Seu ambiente está em risco" no painel (uma janela só, que reúne os boletins e as falhas críticas da
 [ronda de segurança](RONDA-DE-SEGURANCA.md)), um selo discreto que fica no alto das telas até o assunto se
 resolver, e um recado ao Admin, que conta ao dono no chat.

@@ -1,6 +1,6 @@
 # Colaboradores
 
-Um **colaborador** é uma pessoa que você convida para conversar com **um** agente de trabalho do sua Central Agêntica MPV. Ela recebe um e-mail com o link, o login e uma senha temporária, cria a própria senha no primeiro acesso e passa a usar aquele agente por inteiro, e só ele.
+Um **colaborador** é uma pessoa que você convida para conversar com **um** agente de trabalho da sua Central Agêntica MPV. Ela recebe um e-mail com o link, o login e uma senha temporária, cria a própria senha no primeiro acesso e passa a usar aquele agente por inteiro, e só ele.
 
 Este documento tem duas partes: a primeira é para você, dono da Central Agêntica MPV; a segunda, "API", é para o agente que opera o painel por você (o Admin, por exemplo).
 
@@ -52,7 +52,7 @@ A senha temporária vale por 7 dias. Passado o prazo, o login dela avisa que a s
 
 ### E-mail (opcional)
 
-Sem configurar nada, o convite sai pelo texto da tela e você manda por WhatsApp. Para a Central Agêntica MPV mandar o e-mail sozinho, coloque estas linhas no `/etc/ybcentral/web.env` (uma linha por vez, sem apagar as outras) e reinicie o painel:
+Sem configurar nada, o convite sai pelo texto da tela e você manda por WhatsApp. Para a Central Agêntica MPV mandar o e-mail sozinha, coloque estas linhas no `/etc/ybcentral/web.env` (uma linha por vez, sem apagar as outras) e reinicie o painel:
 
 | Variável | O que é |
 |---|---|

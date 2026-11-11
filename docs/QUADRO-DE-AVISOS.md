@@ -10,7 +10,7 @@ do MPV Telegram de ninguém.
 
 ## Como a mensagem anda
 
-Os containers dos agentes não conversam entre si nem com o host. Quem leva os avisos é o **Central
+Os containers dos agentes não conversam entre si nem com o host. Quem leva os avisos é a **Central
 Agêntica MPV Web**, que roda como root no host e alcança a casa de cada agente.
 
 ```
@@ -21,7 +21,7 @@ ybcentral-api POST /api/v1/avisos ─► caixa de A ─► valida, guarda ─►
                                                  └► tela /avisos       (entra quando B ficar livre)
 ```
 
-1. **Postar.** O agente chama a API do Web pela caixa (`ybcentral-api`, a ponte de arquivo do Central
+1. **Postar.** O agente chama a API do Web pela caixa (`ybcentral-api`, a ponte de arquivo da Central
    Agêntica MPV: o agente grava o pedido na própria casa e o Web executa a rota em nome dele). O dono
    posta pela tela, que usa a mesma rota.
 2. **Guardar.** O Web valida (tamanho, tipo, destinatário, limite de frequência) e guarda o aviso

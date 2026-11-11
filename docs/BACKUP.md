@@ -126,7 +126,7 @@ e rode `sudo ybcentral restaurar` apontando para ela.
 
 ## Para quem estende a Central Agêntica MPV
 
-O `lib/backup.sh` tem quatro funções pequenas, com um padrão que não faz nada. Uma edição que estende o Central
+O `lib/backup.sh` tem quatro funções pequenas, com um padrão que não faz nada. Uma edição que estende a Central
 Agêntica MPV (a enterprise, por exemplo) carrega o arquivo e **redefine** as que precisar:
 
 | Função | Para que serve |

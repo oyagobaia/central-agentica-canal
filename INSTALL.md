@@ -37,9 +37,9 @@ Troque `admin` pelo usuário que você quer para o painel. O instalador não ped
 o **link do painel**, o **usuário**, um **link de primeiro acesso** e a frase **"Daqui pra frente é
 pelo painel"**. A senha nunca aparece no terminal.
 
-Se você prefere pedir ao Claude Code, escreva no terminal da VPS:
+Se você prefere pedir ao Claude Code, espere o MPV liberar a chave e escreva no terminal da VPS:
 
-> Baixa, analisa e instala a Central Agêntica MPV: https://github.com/oyagobaia/ybcentral
+> Baixa, analisa e instala a Central Agêntica MPV. O código fica em repositório privado: baixa com `sudo bash chave-de-leitura.sh clonar /root/ybcentral` e segue o INSTALL.md.
 
 Com o projeto já aberto, basta **"instala"**. O Claude roda o comando acima sem senha nenhuma e mostra
 os dois links no fim. Ele não pergunta a senha no chat nem a passa por stdin.
@@ -113,7 +113,7 @@ do fluxo e a origem dos estados estão em [web/docs/PRIMEIRO-AGENTE.md](web/docs
 
 ## Atualizar
 
-Para atualizar uma Central Agêntica MPV já instalado, peça ao Admin: **"atualiza a Central Agêntica MPV"**. Ele segue o roteiro
+Para atualizar uma Central Agêntica MPV já instalada, peça ao Admin: **"atualiza a Central Agêntica MPV"**. Ele segue o roteiro
 [docs/ATUALIZAR.md](docs/ATUALIZAR.md) e usa `sudo ybcentral atualizar`, que faz um backup datado em
 `/var/backups/ybcentral/`, baixa a versão nova, reinstala, recria a máquina de cada agente e confere que
 chaves, senha, memória, conversas, cofres e rotinas continuam como estavam. `sudo ybcentral atualizar --simular`

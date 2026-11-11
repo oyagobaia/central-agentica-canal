@@ -1,7 +1,7 @@
 # Aviso de versão nova da Central Agêntica MPV
 
-Quando o repositório oficial ganha uma versão nova (um PR mergeado na `main`), a Central Agêntica MPV instalado
-percebe sozinho e avisa o dono: uma faixa discreta no painel ("Nova versão disponível") com o resumo
+Quando o repositório oficial ganha uma versão nova (um PR mergeado na `main`), a Central Agêntica MPV instalada
+percebe sozinha e avisa o dono: uma faixa discreta no painel ("Nova versão disponível") com o resumo
 do que mudou, e um recado ao Admin, que conta ao dono no chat e pergunta se ele quer instalar.
 
 **Nada é baixado nem instalado sem o ok do dono.** O aviso só informa. Quem atualiza continua sendo o

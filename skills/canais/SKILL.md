@@ -54,7 +54,7 @@ Avise que o token funciona como uma senha do bot.
 
 ### 3. Guardar o token
 
-O dono cola o token no chat da Central Agêntica MPV. A Central Agêntica MPV guarda o token sozinho no `.env` do agente
+O dono cola o token no chat da Central Agêntica MPV. A Central Agêntica MPV guarda o token sozinha no `.env` do agente
 e não o repassa a você: o que chega na conversa é só uma marca, assim:
 
 ```
@@ -282,7 +282,7 @@ As mensagens do WhatsApp chegam para você neste formato:
 
 ## Segurança
 
-- O token do bot nunca deveria chegar a você: a Central Agêntica MPV o guarda sozinho. Não o repita, não o
+- O token do bot nunca deveria chegar a você: a Central Agêntica MPV o guarda sozinha. Não o repita, não o
   escreva em arquivos do projeto e não o cole em comando. No caminho de reserva ele só
   trafega por stdin e fica em `$HOME/.ybcentral/telegram/.env`.
 - Quem pode falar com o agente pelo Telegram é só quem está na lista (`access.json`). Mensagens

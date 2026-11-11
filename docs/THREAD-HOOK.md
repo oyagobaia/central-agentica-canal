@@ -65,7 +65,7 @@ Log: `<ws>/.ybcentral/logs/hook-telegram-thread.log`.
 
 ---
 
-## Nota: outbound log dos crons (diferenca pro Central Agêntica MPV base)
+## Nota: outbound log dos crons (diferenca para a Central Agêntica MPV base)
 
 Nos assistentes do autor, os crons postam via um script próprio que grava um arquivo `*-outbound.jsonl`, a
 fonte que o hook mescla pra pegar posts de cron que NAO passam pela tool de reply da sessao.

@@ -232,7 +232,7 @@ Veja também `docs/BACKUP.md` para os backups manuais (`ybcentral backup`) e a r
 
 ## Ler o que muda antes de instalar
 
-Cada Central Agêntica MPV é personalizado e usado de um jeito, e pode guardar informações sensíveis do dono. Por isso,
+Cada Central Agêntica MPV é personalizada e usada de um jeito, e pode guardar informações sensíveis do dono. Por isso,
 antes de instalar qualquer atualização, quem cuida dela (quase sempre o Admin) lê o que mudou e verifica
 se a versão nova pode trazer dano ou risco aos arquivos, aos dados e às personalizações de agora. Se
 encontrar risco, por exemplo uma função nova que abre acesso a dados ou ao banco, avisa o dono antes e não
@@ -254,7 +254,7 @@ O `ybcentral atualizar` força esse passo:
 
 ## Personalizações do dono
 
-Quem personalizou o própria Central Agêntica MPV (um botão, uma cor, um comportamento do painel) tem essas mudanças
+Quem personalizou a própria Central Agêntica MPV (um botão, uma cor, um comportamento do painel) tem essas mudanças
 guardadas como commits na branch `personalizacoes` do clone e anotadas em
 `/opt/ybcentral/admin/PERSONALIZACOES.md`. O guia completo está em `docs/PERSONALIZAR.md`. A atualização
 nunca pode levar embora uma personalização sem o dono saber, e o `ybcentral atualizar` cuida disso sozinho
@@ -303,7 +303,7 @@ Depois dessa atualização vem o levantamento, antes de qualquer outra mudança 
 `sudo ybcentral personalizacoes levantar` junta o que foi mudado direto no programa, o que está alterado ou
 commitado no clone, os stashes `ybcentral-atualizar-*` e os arquivos que o Admin editou segundo as conversas
 dele. O passo a passo com o dono (confirmar cada mudança, reaplicar na branch do jeito mais compatível,
-registrar, testar e rodar `sudo ybcentral personalizacoes concluir`) está no capítulo "Quem já tinha o Central
+registrar, testar e rodar `sudo ybcentral personalizacoes concluir`) está no capítulo "Quem já tinha a Central
 Agêntica MPV antes desta versão" do `PERSONALIZAR.md`.
 
 ## Atualização INCOMPLETA (algum agente não foi recriado)

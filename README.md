@@ -3,14 +3,14 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-escuro.png">
-    <img src="docs/assets/banner-claro.png" alt="Central Agêntica MPV: agentes de IA que trabalham por você, no seu servidor. Um círculo laranja central ligado a três nós, que representam os agentes." width="100%">
+    <img src="docs/assets/banner-claro.png" alt="Central Agêntica MPV: agentes de IA que trabalham por você, no seu servidor. Com as logos Yago Baia e MPV." width="100%">
   </picture>
 </p>
 
 <p align="center">
   <a href="https://github.com/oyagobaia/ybcentral/actions/workflows/ci.yml"><img src="https://github.com/oyagobaia/ybcentral/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI"></a>
   <a href="https://github.com/oyagobaia/ybcentral/releases"><img src="https://img.shields.io/github/v/release/oyagobaia/ybcentral?label=vers%C3%A3o&style=flat" alt="Versão"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/oyagobaia/ybcentral?label=licen%C3%A7a&style=flat" alt="Licença MIT"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licen%C3%A7a-propriet%C3%A1ria-1E3A8A?style=flat" alt="Licença proprietária"></a>
   <a href="https://github.com/oyagobaia/ybcentral/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/oyagobaia/ybcentral/badges/cobertura.json&style=flat" alt="Cobertura"></a>
 </p>
 
@@ -112,4 +112,4 @@ bash tests/rodar.sh
 
 ## Licença
 
-MIT. Veja o arquivo [LICENSE](LICENSE).
+Software proprietário de YB Treinamentos Ltda (MPV), usado nos termos do contrato. Veja o arquivo [LICENSE](LICENSE). Os componentes de terceiros e as licenças deles estão em [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

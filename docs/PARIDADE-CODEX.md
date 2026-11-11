@@ -143,7 +143,7 @@ levar dias.
 ## Riscos
 
 1. **A confiança dos hooks do Codex.** Hook sem confiança não roda, e isso é uma proteção que a
-   Central Agêntica MPV tem de manter. A única saída aceita é dar confiança explícita só aos hooks que o própria
+   Central Agêntica MPV tem de manter. A única saída aceita é dar confiança explícita só aos hooks que a própria
    Central Agêntica MPV distribui e revisa: gravar o hash de cada um no `config.toml` do `CODEX_HOME` do agente
    na instalação e na atualização. **`--dangerously-bypass-hook-trust` não pode ser usado**, nem no
    container: com ele, um `.codex/hooks.json` que chegue num repositório clonado ou numa pasta de

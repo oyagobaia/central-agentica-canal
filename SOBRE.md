@@ -1,4 +1,4 @@
-# Sobre o Central Agêntica MPV
+# Sobre a Central Agêntica MPV
 
 Central Agêntica MPV é um produto de YB Treinamentos Ltda (MPV), CNPJ 67.980.737/0001-99.
 

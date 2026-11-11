@@ -58,7 +58,7 @@ Por isso o servidor tem dois modos, decididos por ambiente:
 
 | Modo | Quando | O que a tool responde |
 | --- | --- | --- |
-| `transcript` | sem `YBCHAT_URL` (aluna, Central Agêntica MPV sozinho) | `Entregue.` |
+| `transcript` | sem `YBCHAT_URL` (aluna, Central Agêntica MPV sozinha) | `Entregue.` |
 | `plataforma` | com `YBCHAT_URL` (card do Bunker) | `Entregue.` ou, se o empurrão falhar, o aviso de atraso |
 
 ## As peças

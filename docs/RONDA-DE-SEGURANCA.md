@@ -1,6 +1,6 @@
 # Ronda de segurança de fábrica
 
-Todo Central Agêntica MPV instalado vem com uma ronda de segurança. Ela varre, várias vezes ao dia, as falhas de segurança
+Toda Central Agêntica MPV instalada vem com uma ronda de segurança. Ela varre, várias vezes ao dia, as falhas de segurança
 que afetam **aquela** instalação, e avisa o dono dela. Quem não usa o Notion não recebe aviso sobre o Notion:
 a ronda monta tudo a partir do que existe no seu servidor.
 
@@ -23,7 +23,7 @@ O inventário é guardado em `/var/lib/ybcentral/seguranca/inventario.json`:
   `seguranca/ronda/servicos.json`. Um serviço que o mapa não conhece entra com o nome que você deu a ele.
 
 A parte pessoal do inventário (o app e os serviços conectados) é refeita a cada 3 dias e sempre que a Central Agêntica MPV
-é atualizado. Quando algo novo entra, fica registrado: "acrescentado à ronda em 31/10/2026: Notion via MCP do
+é atualizada. Quando algo novo entra, fica registrado: "acrescentado à ronda em 31/10/2026: Notion via MCP do
 agente luna". Os pacotes do servidor, o kernel e as portas são lidos de novo em toda rodada, porque uma
 atualização do sistema não pode fazer a ronda avisar de uma falha que já foi corrigida.
 
@@ -114,7 +114,7 @@ nenhum aceita comando livre. Todo valor é conferido por formato antes de ser us
 
 | Tipo | O que faz | Checagem antes | Como desfaz |
 | --- | --- | --- | --- |
-| `nft-tabela` | carrega uma tabela do firewall nft a partir de um arquivo do própria Central Agêntica MPV (`arquivo`, `tabela`) e liga uma unidade do systemd que a recarrega no boot | `nft -c -f` só valida | desliga e apaga a unidade e o arquivo, e apaga a tabela |
+| `nft-tabela` | carrega uma tabela do firewall nft a partir de um arquivo da própria Central Agêntica MPV (`arquivo`, `tabela`) e liga uma unidade do systemd que a recarrega no boot | `nft -c -f` só valida | desliga e apaga a unidade e o arquivo, e apaga a tabela |
 | `sysctl` | grava `/etc/sysctl.d/90-ybcentral-ronda-<id>.conf` e aplica (`chave`, `valor`) | lê o valor atual; recusa se a chave não existe | apaga o arquivo e volta o valor anterior |
 | `apt-pacote` | `apt-get install --only-upgrade <pacote>=<versao>` (`pacote`, `versao`) | `apt-get -s` simula; `needrestart -b` não pode mostrar serviço esperando reinício; sem `needrestart` a ronda considera que pode exigir reinício | reinstala a versão anterior |
 

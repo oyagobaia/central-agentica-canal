@@ -1,13 +1,13 @@
-# Personalizar o sua Central Agêntica MPV sem perder a mudança na próxima atualização
+# Personalizar a sua Central Agêntica MPV sem perder a mudança na próxima atualização
 
-A Central Agêntica MPV é seu, e você pode pedir ao Admin para ajustar o que quiser: um botão novo, uma cor, uma
+A Central Agêntica MPV é sua, e você pode pedir ao Admin para ajustar o que quiser: um botão novo, uma cor, uma
 habilidade, um jeito diferente de um agente trabalhar. Só que existe uma pegadinha: a atualização oficial
 troca os arquivos do programa por completo. Uma mudança feita no lugar errado desaparece sozinha na
 próxima vez que você pedir "atualiza a Central Agêntica MPV". Este guia mostra onde cada tipo de mudança deve ficar,
 para ela sobreviver. O Admin lê este documento antes de mexer em qualquer coisa.
 
 > **Mudança importante para as personalizações.** Este aplicativo vai ser personalizado por vocês e
-> continuar sendo atualizado pela equipe do Central Agêntica MPV. Para manter a estabilidade e preservar as suas alterações,
+> continuar sendo atualizada pela equipe da Central Agêntica MPV. Para manter a estabilidade e preservar as suas alterações,
 > vale uma regra daqui para frente: toda personalização entra no registro de personalizações, e antes de
 > mexer no programa convém ler a seção "A arquitetura em uma página", logo abaixo, para a mudança respeitar
 > o núcleo da Central Agêntica MPV.
@@ -221,7 +221,7 @@ que cruza com a versão nova" do `docs/ATUALIZAR.md`.
 
 ## Quem já tinha a Central Agêntica MPV antes desta versão
 
-Se o sua Central Agêntica MPV é anterior a esta funcionalidade, a primeira atualização faz uma migração. Antes de
+Se a sua Central Agêntica MPV é anterior a esta funcionalidade, a primeira atualização faz uma migração. Antes de
 copiar a versão nova, o instalador compara a pasta do programa (`/opt/ybcentral/app`) com a versão oficial
 que estava instalada. O que alguém mudou direto ali é guardado em
 `/opt/ybcentral/admin/personalizacoes-migracao/<data>/`, com estes arquivos: `LISTA.txt` (uma letra por arquivo: M mudou, A acrescentado, D apagado, P só a permissão,
