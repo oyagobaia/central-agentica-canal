@@ -9,6 +9,197 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 
 ## [Não lançado]
 
+**Nova tela Logs no Admin.** No menu do Admin, o item **Logs** (endereço `/logs`) mostra, do mais novo para o mais antigo,
+tudo o que cada agente fez: mensagens, comandos, arquivos e ferramentas, tanto dos agentes que usam o Claude quanto dos que
+usam o Codex. Há filtros por período, tipo, sessão e palavra, e cada registro abre para mostrar o comando, o arquivo e o
+resultado. O texto sai com chaves e senhas escondidas, e a tela diz com clareza quando uma fonte não existe ou não pôde ser
+lida, em vez de parecer que o agente não fez nada. Só você, no navegador, vê os logs: colaboradores e agentes não têm acesso.
+Comando que pode levar senha ou chave aparece só com o nome do programa, sem os argumentos. A tela ajuda a conferir, mas não prova nada, porque um agente pode reescrever a própria casa.
+
+### Como atualizar (logs dos agentes)
+
+Nesta versão há uma instrução nova para o Admin, que explica a tela Logs e pede que ele não leia o conteúdo dos logs. Ela
+precisa entrar nas instruções dele sem apagar o que você já personalizou. O histórico que os agentes já têm aparece sozinho
+na tela, sem migração e sem nada a configurar.
+
+**Vários colaboradores no mesmo agente.** Antes, cada agente aceitava um colaborador só, e um segundo convite era recusado até você revogar o primeiro. Agora você convida quantas pessoas quiser para o mesmo agente. Na tela **Convidar colaborador** cada pessoa aparece num cartão, com os botões de mandar o convite de novo e de revogar o acesso, e o formulário para convidar mais alguém fica sempre abaixo. Revogar ou reenviar o convite de uma pessoa não mexe nas outras. Cada pessoa continua acessando um agente só, e as mensagens de cada uma chegam ao agente marcadas com o nome e o e-mail de quem falou. Nada precisa ser feito para atualizar.
+
+**Correção na rede dos containers no Ubuntu 26.04: netavark em modo iptables.** No Ubuntu 26.04 o netavark usa nftables por padrão, e o `ufw` (que o instalador liga) bloqueia o encaminhamento de pacotes, então nenhum container de agente tinha internet (a construção da imagem falhava com "Temporary failure resolving archive.ubuntu.com"). O instalador agora grava `/etc/containers/containers.conf.d/50-ybcentral-firewall-iptables.conf` com `firewall_driver = "iptables"`, que é o modo em que a cerca de rede da Central Agêntica MPV foi desenhada. No Ubuntu 24.04 isso não muda nada. Se você já definiu `firewall_driver` em qualquer arquivo do podman (`/etc/containers/containers.conf`, a pasta `containers.conf.d` ou o padrão em `/usr/share/containers`), o instalador não grava o dele e não mexe no seu: só avisa quando o valor não é `iptables`.
+
+**A cerca contra o servidor também vale antes de o netavark mexer no firewall.** Ao subir um container, o netavark libera a porta 53 do servidor para a rede do agente numa regra que ficava à frente da cerca, e o agente alcançava essa porta por alguns segundos, até a cerca ser reaplicada. A cerca agora também fica na tabela `mangle` (que o netavark não usa), do mesmo jeito que já era feito para o tráfego entre redes, e o teste de isolamento passou a conferir a porta 53 do servidor.
+
+**Correção no DNS dos agentes em servidor dentro de rede privada.** Em servidor físico na rede de uma empresa, o DNS do servidor costuma ficar num endereço privado (por exemplo `192.168.25.6`), que a cerca de rede dos agentes bloqueia de propósito, e os agentes ficavam sem DNS. Agora, quando isso acontece, só os containers da Central Agêntica MPV (os agentes e a sonda do teste de isolamento) são criados com DNS público (`1.1.1.1` e `8.8.8.8`), sem abrir exceção na cerca e sem mudar a configuração do podman no resto do servidor. Se o DNS do servidor já é público, nada muda.
+
+### Como atualizar
+
+Rode `sudo ./install.sh` de novo (ou peça ao Admin para atualizar): ele aplica as correções sozinho. Há dois casos em que falta um passo seu:
+
+- Servidor com Ubuntu 26.04 e agentes ligados: o instalador só apaga as regras antigas do netavark quando todos os containers estão parados, para não derrubar a rede deles, e avisa com a lista do que está ligado. Nesse caso, pare cada agente com `sudo ybcentral agente parar <slug>`, rode `sudo ./install.sh` de novo e ligue cada um com `sudo ybcentral agente iniciar <slug>`. Containers que não são da Central Agêntica MPV também precisam estar parados.
+- Servidor cujo DNS fica numa rede privada: o container de um agente já existente continua com o DNS antigo, porque o podman não troca o DNS de um container criado. Para ele passar a usar DNS público, rode `sudo ybcentral agente recriar <slug> --forcar` (a casa e a memória do agente não são tocadas). O `--forcar` é preciso quando o agente está parado; com o agente ligado, o `recriar` já percebe sozinho que o DNS precisa mudar.
+
+**A Central Agêntica MPV instala em servidor sem IP público, atrás de um túnel.** Com `--atras-de-tunel` (junto de `--dominio`), o Caddy usa
+certificado interno, o instalador não consulta o IP público e não abre as portas 80 e 443 no firewall; o túnel da Cloudflare
+aponta para `https://127.0.0.1:443`, com o nome do servidor de origem igual ao domínio e sem verificação do certificado. A
+escolha fica no `ybcentral.env` e vale para reinstalar, atualizar e `ybcentral dominio trocar`. Nesse modo o Caddy escuta só no loopback, então o túnel
+precisa rodar no próprio servidor, e ele passa o IP real do visitante ao painel, para o limite de tentativas de login valer
+por pessoa. O firewall agora também libera a porta real do SSH (lida da configuração do `sshd`, dos processos em escuta, do
+`ssh.socket` e da sua conexão atual), e não só a 22. Para quem usa o Claude Code, o instalador confere se a CPU tem SSE4.2 (CPU genérica
+`kvm64` de hipervisor não tem) e explica como trocar o tipo de CPU da máquina virtual. Quando o Claude Code falta e você usa
+`sudo`, a mensagem mostra como instalá-lo para o root. Nada muda para quem já instalou.
+
+**Instalação atrás de um proxy que já existe (`--proxy-existente`).** Para servidor que já tem nginx, Caddy ou túnel da Cloudflare nas portas 80 e 443, o instalador ganhou `--proxy-existente`. Nesse modo ele não instala o Caddy, não mexe no ufw (nem para ler o estado) e trata as portas 80 e 443 ocupadas como aviso. A Central Agêntica MPV Web escuta só em `127.0.0.1`, na porta de `--porta-painel` (padrão 8300), e o instalador imprime no fim o trecho pronto para o nginx e as linhas do `ingress` para o túnel, com o link de primeiro acesso. O domínio passa a ser obrigatório nesse modo. O modo e a porta ficam no `ybcentral.env` e valem nas próximas execuções e no `ybcentral atualizar`; `--sem-proxy-existente` volta ao Caddy da Central Agêntica MPV. Os comandos `ybcentral dominio`, `ybcentral dominio trocar` e `ybcentral status` respeitam o modo. O modo não combina com `--atras-de-tunel`, porque o túnel da Central Agêntica MPV depende do Caddy: o instalador recusa os dois juntos (por opção ou gravados) e diz qual desligar.
+
+**Faixa de rede própria dos agentes (`--faixa-rede`).** A nova opção `--faixa-rede <A.B.0.0/16>` (padrão 10.89.0.0/16, a de sempre) deixa escolher a faixa de IPs das redes dos agentes. Antes de mexer em qualquer coisa, o instalador confere as redes do podman e as rotas da máquina e recusa uma faixa que outro sistema já usa, dizendo qual e sugerindo outra. Com agentes já criados ele não troca a faixa em silêncio. A cerca de firewall (`lib/firewall.sh`, nas tabelas filter e mangle) e o botão de emergência seguem a faixa gravada em `YBCENTRAL_FAIXA_REDE`. A porta do painel também pode ser trocada numa reinstalação com `--porta-painel`: o Caddyfile que o próprio instalador gerou é regravado com a porta nova, e um Caddyfile que você personalizou continua como está.
+
+**Aba Pedidos na Mesa: a fila de tudo o que você pediu aos agentes.** A Mesa (`/mesa`) ganha uma aba nova, a primeira e a que
+abre por padrão. Cada pedido seu a um agente vira um item, na ordem em que chegou, com o estado: fazendo, esperando você (com o
+motivo), entregue, feito ou cancelado. O agente abre o item antes de começar e vai movendo enquanto trabalha. Quando ele marca
+"entregue", tocar no item leva você à conversa, já na mensagem da entrega, e o pedido vira "feito". Ele também vira "feito" se você
+responder ao agente na conversa depois da entrega. O agente não fecha o pedido por você. A aba mostra os abertos e os fechados de
+hoje e de ontem (o resto fica em "Ver arquivados") e acende uma bolinha quando há algo esperando você. Nesta versão não existe um
+vigia que crie sozinho o item que o agente esqueceu, porque isso gastaria a assinatura de quem instalou. O contrato das rotas e do
+comando `ybcentral-mesa pedido` está em `web/docs/PEDIDOS.md`.
+
+### Como atualizar (proxy existente e faixa de rede)
+
+Quem já instalou e não usa as opções novas não precisa fazer nada: o `ybcentral atualizar` continua como sempre, a Central Agêntica MPV segue com o Caddy e com a faixa 10.89.0.0/16.
+
+Se o `ybcentral atualizar` ou o `./install.sh` parar dizendo que a faixa 10.89.0.0/16 se sobrepõe a outra rede da máquina (uma rede de outro sistema no podman ou no docker, uma rota de VPN), o motivo é que outro programa passou a usar parte dessa faixa. A mensagem mostra o que está ocupado e sugere uma faixa livre. Com agentes já criados a faixa não troca sozinha, porque trocar exige recriar a rede de cada agente, e o instalador recusa em vez de fazer isso em silêncio. Você tem dois caminhos seguros. O primeiro é liberar a faixa: tire do ar ou mude a rede do outro sistema e rode a atualização de novo. O segundo é recomeçar com a faixa nova: remova cada agente com `sudo ybcentral agente remover <agente>` (a casa dele fica guardada em `/var/lib/ybcentral/aposentados/`) e rode `sudo ./install.sh --faixa-rede <faixa sugerida>`; a faixa escolhida fica gravada e vale nas próximas execuções.
+
+Para usar o proxy que você já tem, rode `sudo ./install.sh --usuario <nome> --dominio <seu domínio> --proxy-existente` (com `--porta-painel` se a 8300 estiver ocupada) e cole no nginx ou no túnel o trecho que o instalador mostra no fim. Se a sua instalação usa `--atras-de-tunel`, essas duas opções não funcionam juntas: use `--sem-tunel` para ficar com o seu proxy, ou `--sem-proxy-existente` para voltar ao Caddy da Central Agêntica MPV.
+
+### Como atualizar (fila de pedidos)
+
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". A aba e as rotas já vêm na atualização. Nesta versão há uma instrução nova para os
+seus agentes abrirem e moverem os itens da fila. Ela entra na identidade de cada agente, regravada com
+`ybcentral agente identidade <agente>`, sem apagar o que você personalizou neles. Agentes novos já nascem com ela. Os itens ficam
+guardados na pasta de dados do Web, e as suas chaves, conversas e agentes continuam como estavam.
+
+**Convide quem vai usar o seu agente por um comando, e deixe a pessoa conectar a conta de IA dela.** Três mudanças
+nos colaboradores (pessoas convidadas para conversar com um agente só):
+
+- Novo comando no servidor, `ybcentral colaborador criar <agente> <email>`, que cria o acesso e mostra o texto do convite
+  pronto para copiar, com o endereço, o login e a senha temporária. Também há `listar`, `reenviar` e `revogar`. Ao criar
+  um agente, o Admin passa a oferecer "Quer que eu crie um usuário e senha para essa pessoa entrar?" e entrega o convite
+  na conversa, numa caixinha com o botão de copiar.
+- Se o agente ainda não tem conta de IA conectada, o colaborador agora pode conectar a dele na página **Conectar conta**,
+  sem depender do dono. Só uma pessoa conecta por vez, um agente que já tem conta continua só com o dono, e um login
+  expirado também: o colaborador só inicia o login quando o agente confirma, na hora, que não há nenhuma credencial; com
+  credencial presente, mesmo vencida e mesmo que ele a tenha conectado antes, quem reconecta é o dono, em Conectar conta. Revogar o colaborador não desconecta a conta que ele
+  conectou, e o aviso aparece no comando e no log.
+- A conversa do colaborador não tem mais a fileira nem o menu de troca de agentes, porque ele só enxerga o agente dele.
+
+### Como atualizar
+
+- Depois do `ybcentral atualizar`, reinicie o painel (`sudo systemctl restart ybcentral-web`). É o reinício que cria o canal
+  local que o novo comando `ybcentral colaborador` usa para falar com o painel. Sem ele, o comando avisa que não consegue
+  falar com o Web e diz o que fazer.
+- Para o colaborador conseguir conectar a conta, o programa de cada agente (o runner, que vai dentro da imagem dos
+  agentes) também precisa estar na versão nova. Por segurança, o painel só deixa o colaborador conectar quando o agente
+  confirma, na hora, que está sem conta; um agente com versão antiga não sabe confirmar, então o colaborador recebe
+  "avise o dono para atualizar" e nada é conectado. O `ybcentral atualizar` normal já cobre isso: ele reconstrói a imagem e
+  recria o container de cada agente que está ligado. Só um agente que você deixou **parado** continua com a versão antiga;
+  para esse, ligue-o e rode `sudo ybcentral agente recriar <agente>` (ou `ybcentral atualizar --forcar`). O convite pelo
+  comando `ybcentral colaborador` não depende disso.
+- Esta versão traz uma instrução nova para o Admin entender o comando de convite. Ela precisa entrar nas instruções dele
+  sem apagar o que você já personalizou: peça ao Admin para juntar a seção "Convidar um colaborador" do arquivo
+  `templates/ambiente/admin.md` à dele, preservando as suas alterações. Os agentes de trabalho ganham uma frase nova sobre o
+  assunto do mesmo jeito (`templates/ambiente/agente.md`).
+
+**Os agentes no ChatGPT (Codex) passam a ter as mesmas instruções dos agentes no Claude.** Até aqui o arquivo de
+instruções do agente no Codex (o `AGENTS.md`) era escrito separado do `CLAUDE.md` e tinha menos conteúdo: faltavam a
+lousa, o texto para copiar com botão, o quadro de avisos da equipe, a tela para fazer logins, o agendamento e os
+lembretes. Agora os dois arquivos saem de uma fonte só (`scripts/gerar-instrucoes.sh`), e um teste reprova a mudança se
+eles ficarem diferentes. Onde o Claude e o Codex funcionam de jeitos distintos (por exemplo, o Claude chama uma skill
+por `/nome` e o Codex abre o roteiro dela pelo nome), cada um recebe o seu caminho. O `doctor` também passou a
+conferir o `AGENTS.md` do agente. Agentes novos já nascem com as instruções completas. Os que já existem
+mantêm o arquivo como está, porque você pode tê-lo personalizado.
+
+### Como atualizar (instruções do Codex)
+
+Se você tem agentes no ChatGPT (Codex) criados antes desta versão, peça ao Admin, no chat: "atualiza a Central Agêntica MPV" e depois
+"junta as seções que faltam no AGENTS.md dos meus agentes no Codex". Ele roda a verificação do agente com a opção de conserto (`--fix`, do `doctor`),
+que acrescenta no fim do `AGENTS.md` só as seções que não existem (mesa de tarefas, quadro de avisos, lousa, texto para
+copiar, tela de logins, agendamento e lembretes), guarda uma cópia do arquivo ao lado e não apaga nada do que você
+personalizou. Agentes no Claude não precisam de nenhum passo.
+
+**O agente no ChatGPT (Codex) passa a lembrar das conversas e a ler o quadro de avisos, como o do Claude.** Antes, o
+Codex não executava os lembretes automáticos da Central Agêntica MPV: o agente não recebia, antes de cada resposta, as memórias
+e conversas relacionadas, não via o quadro de avisos da equipe e não começava a sessão já sabendo o que estava na
+memória de curto prazo. Agora a Central Agêntica MPV liga esses lembretes no Codex usando o recurso de hooks do próprio Codex, e
+só dá confiança aos hooks que ele mesmo distribui. Um arquivo de hooks que chegue num repositório clonado pelo agente
+continua sem rodar. O ajuste acontece sozinho quando o agente sobe.
+
+### Como atualizar (hooks do Codex)
+
+Depois de atualizar, reinicie os agentes que usam o ChatGPT (Codex) para que os lembretes passem a valer: peça ao
+Admin "reinicia meus agentes no Codex". Se você mantinha um `hooks.json` seu na pasta `.codex` do agente, ele é
+preservado; só as linhas da Central Agêntica MPV são regravadas. Agentes no Claude não precisam de nenhum passo.
+
+**A regra de ficar livre para conversar passa para o topo das instruções do agente.** A regra que manda o agente
+responder primeiro e separar o pedido em "na hora", "curto" (subagente) e "longo" (card) já existia, mas ficava no
+fim das instruções, depois do AGENT.md. Num agente com o AGENT.md muito personalizado ela ficava longe demais e o
+agente prendia a conversa em tarefa longa. Agora um resumo curto dela abre as instruções de todo agente, antes do
+AGENT.md, e o passo a passo completo continua no mesmo lugar.
+
+### Como atualizar (regra no topo)
+
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". A atualização regrava as instruções de cada agente sozinha, sem apagar
+o que você personalizou no AGENT.md. Vale a partir da próxima conversa de cada agente. Quem não quiser atualizar
+tudo agora pode rodar `ybcentral agente identidade <agente>` para cada agente.
+
+**A reflexão da noite não acorda o agente em dia sem conversa com você.** Antes, às 23h30 ela rodava todo dia, e cada rodada
+gastava o contexto inteiro da sessão (em agentes pouco usados, mais da metade das reflexões só dizia que nada aconteceu). Agora, se o
+registro das conversas foi lido por completo e você não mandou nenhuma mensagem naquele dia, a reflexão é pulada: fica anotado no
+`reflection.log` e no Pulso ("dia sem conversa com o dono; reflexão pulada"), e naquele dia não existe diário. A auditoria das 23h50 e o
+`doctor` entendem o dia pulado e não dão alarme por falta de diário. Na dúvida a reflexão roda como sempre: isso vale quando o agente
+usa o Codex, quando a configuração do agente é antiga e não informa o provedor, ou quando o registro das conversas não pôde ser lido. Para
+rodar a reflexão mesmo assim, use `YBCENTRAL_REFLECT_SEMPRE=1 bash scripts/reflection.sh <config>`.
+
+### Como atualizar (reflexão em dia sem conversa)
+
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". A reflexão confere o provedor do agente (Claude ou Codex) na configuração dele
+(`config.sh`) antes de pular um dia. Se um agente antigo não tem o provedor ali, a reflexão segue rodando todo dia, como antes. Para
+ele passar a pular os dias parados, peça ao Admin `ybcentral agente reparar <nome>`, que regrava essa configuração. Se você quiser que
+um agente nunca pule a reflexão, não conte com uma linha `YBCENTRAL_REFLECT_SEMPRE=1` acrescentada à mão no `config.sh`, porque o reparo
+regrava o arquivo e a linha se perde; defina a variável no ambiente da rotina.
+
+**O painel e a conversa passam a carregar mais rápido, sobretudo no celular.** O servidor da web agora entrega os arquivos da tela
+(scripts, estilos, páginas e dados em JSON) comprimidos: o `conversa.js`, por exemplo, sai de cerca de 243 KB para uns 77 KB. A conversa
+em tempo real continua chegando na hora, porque o fluxo dela fica de fora da compressão. A mudança é no site que o instalador grava no
+Caddy; o `ybcentral atualizar` troca esse arquivo sozinho quando ele ainda é o que o instalador gerou, e só recarrega o Caddy depois de
+conferir que a configuração nova é válida. Se algo der errado na conferência, o arquivo volta ao que era e o Caddy não é recarregado.
+
+### Como atualizar (compressão no Caddy)
+
+Nada a fazer se você nunca editou o arquivo do Caddy: peça ao Admin, no chat, "atualiza a Central Agêntica MPV". Se você personalizou o
+`/etc/caddy/Caddyfile` ou o `/etc/caddy/conf.d/ybcentral.caddy` (por exemplo, acrescentou cabeçalhos ou um segundo endereço), a Central Agêntica MPV não
+substitui o seu arquivo, porque ali estão as suas escolhas; ele avisa durante a atualização e a compressão fica desligada até você
+acrescentar o bloco `encode` dentro do site, antes do `reverse_proxy`. O aviso traz o bloco pronto. Não use `text/*` na lista de tipos:
+isso comprimiria também a conversa em tempo real e as mensagens deixariam de chegar na hora. Depois confira e recarregue com
+`caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile && sudo systemctl reload caddy`.
+Nesse caso o `ybcentral dominio trocar` é a exceção: como o nome do site precisa mudar, ele guarda uma cópia do seu arquivo ao lado, em
+`/etc/caddy/` (por exemplo `Caddyfile.antes-dominio-<data>`), e grava no lugar o site padrão da Central Agêntica MPV com o domínio novo. O aviso mostra
+o caminho da cópia; para levar suas personalizações de volta, copie as linhas que quiser para dentro do bloco do site, valide e recarregue o Caddy.
+
+**O batimento deixa de acordar o agente várias vezes pelo mesmo assunto.** A cada 30 minutos o sistema confere a seção
+"Quero Falar com o dono Sobre" da memória de trabalho. Se o agente decidia não incomodar e não tirava a linha, o batimento
+voltava a acordá-lo sem parar (umas 9 vezes por dia), e cada despertar gastava uma parte grande da sua assinatura. Agora o
+sistema guarda o que já levou ao agente e só o acorda de novo se o conteúdo da seção mudar ou depois de 24 horas (ajustável
+com `YBCENTRAL_HEARTBEAT_REPETIR_H`). O agente também ganha a marca `[a partir de AAAA-MM-DD]` para adiar uma linha até a data em
+que quer ser lembrado. O sorteio de 1 em 4 e o ramo da memória de trabalho velha saíram, porque não faziam mais efeito.
+
+### Como atualizar (batimento)
+
+Peça ao Admin, no chat: "atualiza a Central Agêntica MPV". O script do batimento já vem na atualização. Nesta versão há uma instrução nova
+para os seus agentes conhecerem a marca de adiar. Ela entra na identidade de cada agente, regravada com
+`ybcentral agente identidade <agente>`, sem apagar o que você personalizou neles.
+
+**A conversa abre mais rápido.** A tela pedia a lista de agentes, depois o histórico e só então ligava o tempo real, uma
+coisa de cada vez. Agora o histórico sai junto com a lista de agentes. No servidor, a lista deixa de esperar a consulta
+a cada agente quando as informações dela vencem: responde na hora com o que já sabe e atualiza em segundo plano (se a
+atualização falhar, o motivo vai para o registro e a lista segue com o último valor bom). O `ybcentral atualizar` já resolve.
+
 **A aba Operações volta a mostrar as barrinhas de cada rotina, com rotina, horário e resultado.** O painel do agente não
 tinha permissão para ler o diário do sistema, e sem ela a aba dizia que não havia histórico, mesmo com as rotinas
 rodando. Agora, dentro do contêiner, o usuário do agente passa a poder ler o diário do sistema daquele contêiner. Se o

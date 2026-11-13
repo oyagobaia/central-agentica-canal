@@ -3,8 +3,8 @@
   "produto": "Central Agêntica MPV",
   "_leia": "Canal público da Central Agêntica MPV: lista dos commits publicados do produto, lida pelo aviso de atualização de cada instalação. Não tem código.",
   "ultimo": {
-    "sha": "406789f025cf8404dd11b16a32a4d219c3d14c51",
-    "data": "2026-11-11T05:44:46-03:00",
+    "sha": "0a9b04c4746b9b140693b6e50e3c214331d11732",
+    "data": "2026-11-13T14:52:02-03:00",
     "versao": "1.0.0"
   },
   "commits": [
@@ -52,6 +52,11 @@
       "sha": "406789f025cf8404dd11b16a32a4d219c3d14c51",
       "data": "2026-11-11T05:44:46-03:00",
       "mensagem": "Central Agêntica MPV: instalador do porteiro e backup cifrado para fora da VPS"
+    },
+    {
+      "sha": "0a9b04c4746b9b140693b6e50e3c214331d11732",
+      "data": "2026-11-13T14:52:02-03:00",
+      "mensagem": "Central Agêntica MPV: atualização com Logs, Pedidos e colaboradores"
     }
   ]
 }
