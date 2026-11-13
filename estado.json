@@ -3,8 +3,8 @@
   "produto": "Central Agêntica MPV",
   "_leia": "Canal público da Central Agêntica MPV: lista dos commits publicados do produto, lida pelo aviso de atualização de cada instalação. Não tem código.",
   "ultimo": {
-    "sha": "0a9b04c4746b9b140693b6e50e3c214331d11732",
-    "data": "2026-11-13T14:52:02-03:00",
+    "sha": "36d55e8bb3718347129b90bb58c6cfff3e09b458",
+    "data": "2026-11-13T15:30:11-03:00",
     "versao": "1.0.0"
   },
   "commits": [
@@ -57,6 +57,11 @@
       "sha": "0a9b04c4746b9b140693b6e50e3c214331d11732",
       "data": "2026-11-13T14:52:02-03:00",
       "mensagem": "Central Agêntica MPV: atualização com Logs, Pedidos e colaboradores"
+    },
+    {
+      "sha": "36d55e8bb3718347129b90bb58c6cfff3e09b458",
+      "data": "2026-11-13T15:30:11-03:00",
+      "mensagem": "Central Agêntica MPV: extensão opcional relé do Ygor (Admin conversa com o Ygor CEO pela Tailscale, com plano B no Admin local)"
     }
   ]
 }
