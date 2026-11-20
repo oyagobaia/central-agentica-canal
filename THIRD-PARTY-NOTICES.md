@@ -1,6 +1,6 @@
 # Avisos de terceiros
 
-Este produto inclui software de DG Claw, licença MIT, Copyright (c) 2026 DG Medeiros (https://github.com/DGatoM/DG-Claw), na versão do commit c38d399. O texto da licença e os avisos de terceiros do DG Claw seguem abaixo, sem alteração.
+Este produto inclui software de DG Claw, licença MIT, Copyright (c) 2026 DG Medeiros (https://github.com/DGatoM/DG-Claw), na versão do commit a47ac0e. O texto da licença e os avisos de terceiros do DG Claw seguem abaixo, sem alteração.
 
 ## Licença do DG Claw
 

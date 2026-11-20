@@ -3,8 +3,8 @@
   "produto": "Central Agêntica MPV",
   "_leia": "Canal público da Central Agêntica MPV: lista dos commits publicados do produto, lida pelo aviso de atualização de cada instalação. Não tem código.",
   "ultimo": {
-    "sha": "883dddb9d203a37af082fbdd34233958f7518ce3",
-    "data": "2026-11-16T11:13:08-03:00",
+    "sha": "ee88ab9e1badfb9144bf0c666a775f741d32912a",
+    "data": "2026-11-20T18:55:46-03:00",
     "versao": "1.0.0"
   },
   "commits": [
@@ -67,6 +67,11 @@
       "sha": "883dddb9d203a37af082fbdd34233958f7518ce3",
       "data": "2026-11-16T11:13:08-03:00",
       "mensagem": "Central Agêntica MPV: trava de resposta no canal, vigia do Enter sem recibo e vigia de saúde depois da compactação"
+    },
+    {
+      "sha": "ee88ab9e1badfb9144bf0c666a775f741d32912a",
+      "data": "2026-11-20T18:55:46-03:00",
+      "mensagem": "Central Agêntica MPV: acesso de suporte temporário, diagnóstico remoto só de leitura, restrições do agente, white label com a marca MPV e visual novo"
     }
   ]
 }

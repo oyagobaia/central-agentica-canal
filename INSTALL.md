@@ -204,6 +204,19 @@ do fluxo e a origem dos estados estão em [web/docs/PRIMEIRO-AGENTE.md](web/docs
 - **Criação do agente demorando:** a primeira criação também prepara a imagem dos agentes. O Admin
   acompanha a preparação; o formulário mantém suas escolhas.
 
+## Suporte remoto (opcional)
+
+Quem dá suporte à sua Central Agêntica MPV pode ler só a saúde do sistema (quais serviços e rotinas funcionam e por
+que algo parou) com uma chave de suporte. Ela não lê conversas, memória nem arquivos, e não muda nada. A
+máquina é sua: você revoga a chave quando quiser.
+
+- Para criar, abra **Suporte remoto** no menu e toque em **Criar chave**, ou rode
+  `sudo ybcentral chave-api criar --escopo diagnostico --nome "Suporte YB"`. O token aparece uma única vez.
+- Para revogar, use o botão **Revogar** na tela ou `sudo ybcentral chave-api revogar <código>` (o código
+  aparece em `sudo ybcentral chave-api listar`).
+- Com a instalação padrão não há nada a configurar na rede. Se você pôs o Cloudflare Access ou outro
+  porteiro na frente do painel, libere o caminho `/api/v1/diagnostico` para a chave passar.
+
 ## Atualizar
 
 Para atualizar uma Central Agêntica MPV já instalada, peça ao Admin: **"atualiza a Central Agêntica MPV"**. Ele segue o roteiro

@@ -96,6 +96,7 @@ agente (régua: feature de ~2 mil linhas leva 10 a 30 min).
 | Lembretes | agendador do Web + `/input` | funciona | `web/lib/lembretes.js:207` | nada | 0 |
 | Pokes e heartbeat | `inject.py` em modo bunker | funciona | `scripts/_lib/inject.py:442-474,552`; `poke_ledger.py` não depende do motor | nada | 0 |
 | Crons headless (reflexão headless, post, comentários, poderes) | `claude --print` | não funciona | `reflection.sh:303-313`, `scripts/cron/ybcentral-post.sh:105`, `ybcentral-comentarios.sh:101` | um `motor-headless` que escolhe `claude -p` ou `codex exec ... </dev/null` | 0,5 |
+| Busca do eco do passado (`memory_search.py`, Haiku sem ferramentas e sem MCP) | `claude --print --model haiku` | não funciona | `scripts/memory_index/memory_search.py` (`call_haiku`) | usar o mesmo `motor-headless` dos crons; até lá a busca com Codex cai no termo exato do índice | 0,25 |
 | Custos (tokens por mensagem) | `channels-tokens-logger.py` lê o transcript | não funciona | `scripts/channels-tokens-logger.py:76-80,119-136` | ler `token_count` do rollout; na assinatura do ChatGPT não há custo em dólar, só tokens | 0,25 |
 | Mesa de tarefas | `ybcentral-mesa` | funciona | `templates/AGENTS.md.tmpl:155` | nada | 0 |
 | Modo monitor | `ybcentral-monitor` | funciona | `docs/MODO-MONITOR.md:40` | nada | 0 |
@@ -111,6 +112,7 @@ agente (régua: feature de ~2 mil linhas leva 10 a 30 min).
 | Conectores do claude.ai (Gmail, Agenda, Drive e outros) | MCP próprio por serviço; até lá, o que precisa deles fica num agente Claude ou num card Claude |
 | Namespace de comandos de plugin (`/ybcentral:x`) | skills nativas do Codex pelo nome |
 | `statusLine` | o rollout e o app-server já trazem o uso do plano |
+| Diálogo de confiança por `--add-dir` (Claude Code 2.1.326: marcação de `hasTrustDialogAccepted` antes do boot e erro `runner:tela-de-confianca`) | Sem equivalente a fazer: o Codex não pergunta por pasta extra, só tem o menu "Trust this folder?" do cwd, que já é tratado por `telaDeConfiancaDoCodex` e pelo `trust_level` gravado. A correção é específica do Claude porque a pergunta nasce no CLI dele |
 | Regras `allow`/`ask`/`deny` por ferramenta | `enabled_tools`/`disabled_tools` por servidor MCP e a política de aprovação do Codex |
 
 ## Total
